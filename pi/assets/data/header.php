@@ -21,6 +21,11 @@
     if(isset($_SESSION["name"])) {
         $name = $_SESSION["name"];
         echo "<h1>Welcome $name</h1>";
+    } else {
+        if($_SERVER['REQUEST_URI'] != '/pi/index.php' && $_SERVER['REQUEST_URI'] != '/pi/register.php') {
+            redirect('index.php');
+        }
     }
     /**/?>
+    <a href="home.php">Home</a>
 </header>

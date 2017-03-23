@@ -97,9 +97,16 @@ class Upload_db
         }
     }
 
-    public function getAllFiles($user) {
+    public function getAllFiles() {
         $files = null;
-
+        try{
+            $sql = "select * from upload.files where username like :username";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindParam(":username", $_SESSION['name']);
+            $files = $stmt->fetchAll(PDO::FETCH_CLASS);
+        }catch(PDOException $e) {
+            die($e->getMessage());
+        }
         return $files;
     }
 

@@ -15,4 +15,15 @@ require_once "assets/data/header.php";
 
 <?php
 
+$files = getFiles();
+
+var_dump($files);
+
+/*
+foreach(getFiles() as $file) {
+    echo "<p>FILE:</p>";
+    var_dump($file);
+}
+/**/
+
 require_once "assets/data/footer.php";

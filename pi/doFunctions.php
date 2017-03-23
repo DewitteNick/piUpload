@@ -3,7 +3,6 @@
 function checkLogin($name, $pass) {
     $db = Upload_db::getUploadInstance();
     $valid = $db->checkLogin($name, $pass);
-    $db->closeConnection();
     return $valid;
 }
 
@@ -19,7 +18,6 @@ function registerUser($username, $password, $password2) {
     if($password == $password2) {
         $success = $db->registerUser($username, $password);
     }
-    $db->closeConnection();
     return $success;
 }
 
@@ -60,15 +58,13 @@ function saveFile($file) {
     $db->addFile($file);
     $targetDir = "upload/";
     $success = move_uploaded_file($file['tmp_name'], $targetDir.$file['name']);
-    $db->closeConnection();
     return $success;
 }
 
 
 function getFiles() {
     $db = Upload_db::getUploadInstance();
-    $files = $db->getAllFiles($_SESSION['name']);
-    $db->closeConnection();
+    $files = $db->getAllFiles();
     return $files;
 }
 
