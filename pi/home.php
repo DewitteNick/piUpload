@@ -17,13 +17,16 @@ require_once "assets/data/header.php";
 
 $files = getFiles();
 
-var_dump($files);
+?>
+<ul>
+<?php
 
-/*
-foreach(getFiles() as $file) {
-    echo "<p>FILE:</p>";
-    var_dump($file);
+foreach($files as $file) {
+    echo "<li><a href='download.php?file=$file'>$file</a></li>";
 }
-/**/
+
+?>
+</ul>
+<?php
 
 require_once "assets/data/footer.php";

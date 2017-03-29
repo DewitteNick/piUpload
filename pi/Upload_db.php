@@ -97,17 +97,39 @@ class Upload_db
         }
     }
 
-    public function getAllFiles() {
-        $files = null;
+    public function getAllFiles($name) {
+        $files = [];
         try{
-            $sql = "select * from upload.files where username like :username";
+            $sql = "select filename from upload.files where username like :username";
             $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username", $_SESSION['name']);
-            $files = $stmt->fetchAll(PDO::FETCH_CLASS);
+            $stmt->bindParam(":username", $name);
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            foreach($resultSet as $file) {
+                array_push($files, $file);
+            }
         }catch(PDOException $e) {
             die($e->getMessage());
         }
         return $files;
+    }
+
+    public function checkValidity($file, $name) {
+        $valid = false;
+        try{
+            $sql = "select username from upload.files where filename like :filename";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindParam(":filename", $file);
+            $stmt->execute();
+            $resultSet = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            $resultSet = $resultSet[0];
+            if($resultSet == $name) {
+                $valid = true;
+            }
+        }catch(PDOException $e) {
+            die($e->getMessage());
+        }
+        return $valid;
     }
 
 }

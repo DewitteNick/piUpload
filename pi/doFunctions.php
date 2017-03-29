@@ -64,11 +64,29 @@ function saveFile($file) {
 
 function getFiles() {
     $db = Upload_db::getUploadInstance();
-    $files = $db->getAllFiles();
+    $files = $db->getAllFiles($_SESSION['name']);
     return $files;
 }
 
 
+function checkAvailability($file) {
+    $db = Upload_db::getUploadInstance();
+    $valid = $db->checkValidity($file, $_SESSION['name']);
+    return $valid;
+}
+
+
+function downloadFile($file){
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="' . $file . '"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('content-length: '. filesize('upload/'.$file));
+    readfile($file);
+    exit;
+}
 
 
 
