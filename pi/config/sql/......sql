@@ -8,10 +8,12 @@
 -- delete from upload.users where username like "test";
 
 
- insert into upload.files(username, filecode, filename) values ("nick","myAddedFile","myAddedFile");
+-- insert into upload.files(username, filecode, filename) values ("nick","myAddedFile","myAddedFile");
 
 
-select * from users;
+-- delete from upload.files where username like "nick";
 
 
-select * from files;
+delete from upload.files where id like 4 ;
+
+select * from upload.files;

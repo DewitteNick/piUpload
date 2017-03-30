@@ -15,4 +15,18 @@ require_once "assets/data/header.php";
 
 <?php
 
+$files = getFiles();
+
+?>
+<ul>
+<?php
+
+foreach($files as $file) {
+    echo "<li><a href='file.php?file=$file&action=download'>$file</a><a href='file.php?file=$file&action=delete'>Delete</a></li>";
+}
+
+?>
+</ul>
+<?php
+
 require_once "assets/data/footer.php";
