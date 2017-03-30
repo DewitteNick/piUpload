@@ -22,7 +22,7 @@ $files = getFiles();
 <?php
 
 foreach($files as $file) {
-    echo "<li><a href='download.php?file=$file'>$file</a></li>";
+    echo "<li><a href='file.php?file=$file&action=download'>$file</a><a href='file.php?file=$file&action=delete'>Delete</a></li>";
 }
 
 ?>

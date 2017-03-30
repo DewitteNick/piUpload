@@ -26,7 +26,7 @@ function checkFile($file) {
     if($file['error'] !== 0) {
         return false;
     }
-    $allowedFileTypes = array('image/jpeg','image/png','image/gif','image/bmp');
+    $allowedFileTypes = array('image/jpeg','image/png','image/gif','image/bmp','text/plain');
     $maxFileSize = 2000000000;  //NOTE php file size? (=> this is 2 GB)
     $targetFile = "upload/".$file['name'];
     $uploadOk = 0;
@@ -86,6 +86,14 @@ function downloadFile($file){
     header('content-length: '. filesize('upload/'.$file));
     readfile($file);
     exit;
+}
+
+
+function removeFile($file) {
+	$path = "upload/".$file;
+	unlink($path);
+	$db = Upload_db::getUploadInstance();
+	$db->removeFile($file, $_SESSION['name']);
 }
 
 

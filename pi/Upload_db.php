@@ -132,6 +132,18 @@ class Upload_db
         return $valid;
     }
 
+    public function removeFile($file, $username) {
+    	try {
+    		$sql = "delete from upload.files where filename like :filename and username like :username";
+    		$stmt = $this->dbh->prepare($sql);
+    		$stmt->bindParam(":filename", $file);
+    		$stmt->bindParam(":username", $username);
+    		$stmt->execute();
+		}catch(PDOException $e) {
+    		die($e->getMessage());
+		}
+	}
+
 }
 
 
