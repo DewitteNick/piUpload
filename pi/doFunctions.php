@@ -18,6 +18,9 @@ function registerUser($username, $password, $password2) {
     if($password == $password2) {
         $success = $db->registerUser($username, $password);
     }
+    if($success) {
+    	mkdir("upload/".$username);
+	}
     return $success;
 }
 
@@ -28,7 +31,7 @@ function checkFile($file) {
     }
     $allowedFileTypes = array('image/jpeg','image/png','image/gif','image/bmp','text/plain');
     $maxFileSize = 2000000000;  //NOTE php file size? (=> this is 2 GB)
-    $targetFile = "upload/".$file['name'];
+    $targetFile = "upload/".$_SESSION['name']."/".$file['name'];
     $uploadOk = 0;
     $amountOfChecks = 3;
     //NOTE Check if file exists already.
@@ -47,8 +50,6 @@ function checkFile($file) {
         }
     }
     return ($uploadOk == $amountOfChecks);
-
-    return true;    //TODO remove this
 }
 
 
@@ -56,7 +57,7 @@ function saveFile($file) {
     //TODO add file to sql
     $db = Upload_db::getUploadInstance();
     $db->addFile($file);
-    $targetDir = "upload/";
+    $targetDir = "upload/".$_SESSION['name']."/";
     $success = move_uploaded_file($file['tmp_name'], $targetDir.$file['name']);
     return $success;
 }
@@ -77,20 +78,38 @@ function checkAvailability($file) {
 
 
 function downloadFile($file){
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="' . $file . '"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('content-length: '. filesize('upload/'.$file));
-    readfile($file);
-    exit;
+	$fullPath = "upload/".$_SESSION['name']."/".$file;
+	try {
+		/*
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="' . $file . '"');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('content-length: ' . filesize('upload/' . $_SESSION['name'] . "/" . $file));
+		readfile("upload/".$_SESSION['name']."/".$file);
+		exit;
+		*/
+		header('Content-Description: File Transfer');
+		header('Content-type: '.mime_content_type($fullPath));
+		header('Content-Disposition: attachment; filename="'.$file.'"');
+		header('Expires: -1');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('content-length: '.filesize($fullPath));
+		ob_clean();
+		flush();
+		readfile($fullPath);
+		exit(0);
+	}catch(Exception $ex) {
+		die($ex->getMessage());
+	}
 }
 
 
 function removeFile($file) {
-	$path = "upload/".$file;
+	$path = "upload/".$_SESSION['name']."/".$file;
 	unlink($path);
 	$db = Upload_db::getUploadInstance();
 	$db->removeFile($file, $_SESSION['name']);
