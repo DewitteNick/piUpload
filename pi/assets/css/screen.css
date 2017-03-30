@@ -17,6 +17,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+#fileList a:hover{
+	text-decoration: none;
+	background-color: #3377CC;
+}
+
 /*----- PAGE TOP->DOWN -----*/
 
 header{
@@ -47,7 +52,7 @@ header > a {
 }
 
 header > a:hover {
-	color: #3377CC;
+	color: #4488DD;
 }
 
 nav {
@@ -76,6 +81,48 @@ nav > ul > li > a:hover {
 	text-decoration: none;
 }
 
+#fileList {
+	margin-top: 4vh;
+}
+
+#fileList > ul > li {
+	margin: 2vh 0;
+	box-shadow: 0 0 8px 0 #000000;
+}
+
+#fileList > ul > li:hover {
+	box-shadow: 0 0 16px 3px #303030;
+}
+
+#fileList > ul > li:nth-of-type(2n+1) {
+	background-color: #E7E7E7;
+}
+
+#fileList > ul > li > a {
+	display: inline-block;
+	line-height: 250%;
+	vertical-align: text-bottom;
+}
+
+#fileList > ul > li > a:first-of-type {
+	padding-left: 3vw;
+	width: 77vw;
+	border-right: 1px solid black;
+}
+
+#fileList > ul > li > a > h1 {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+#fileList > ul > li > a + a {
+	text-align: right;
+	width: 10vw;
+	padding-right: calc(10vw - 1px);
+}
+
+
+/*
 #fileList {
 	margin-top: 1rem;
 }
@@ -112,7 +159,7 @@ nav > ul > li > a:hover {
 	display: inline-block;
 	margin-right: 2rem;
 }
-
+/**/
 
 
 

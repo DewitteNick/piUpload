@@ -25,12 +25,12 @@ $files = getFiles();
 			<?php
 
 			foreach ($files as $file) {
-				$html = "<li>";
-				$html .= "<h1>$file</h1>";
-				$html .= "<ul class='inlineList'>";
-				$html .= "<li><a href='file.php?file=$file&action=download' class='download'><i class='fa fa-download fa-lg'></i> Download </a></li>";
-				$html .= "<li><a href='file.php?file=$file&action=delete' class='delete'><i class='fa fa-trash fa-lg'></i> Delete </a></li>";
-				$html .= "</ul></li>";
+				//NOTE nested anchor tags are illegal
+				$html = "<li><a href='file.php?file=$file&action=download'>";
+				$html .= "<h1><i class='fa fa-file fa-gl'></i> $file</h1>";
+				$html .= "</a>";
+				$html .= "<a href='file.php?file=$file&action=delete'><i class='fa fa-trash fa-gl'></i> Delete </a>";
+				$html .= "</li>";
 				echo $html;
 			}
 
@@ -40,3 +40,21 @@ $files = getFiles();
 <?php
 
 require_once "assets/data/footer.php";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
