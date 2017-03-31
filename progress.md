@@ -2,6 +2,18 @@
 
 ##
 
+### 2017-03-31
+
+##### 2017-03-31.1
+
+###### Going live! V0.1
+
+* Screen-size specific CSS (only desktop(+600px width) is present)
+* TODO: FIX
+	* passwords are plain text. That's fine, right?
+	* perhaps change te sql account to something that's less insecure? maaybe? and maybe get that out of GIT as well?
+	* TBA
+
 ### 2017-03-30
 
 ##### 2017-03-30.3

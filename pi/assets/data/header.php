@@ -13,7 +13,7 @@
     <title>PHP page</title>
     <meta name="author" content="Nick Dewitte"/>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/screen.css">
+    <link rel="stylesheet" media="screen and (min-width:600px)" type="text/css" href="assets/css/screenPC.css">
 </head>
 <body>
 <header>

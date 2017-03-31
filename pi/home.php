@@ -28,9 +28,10 @@ $files = getFiles();
 				//NOTE nested anchor tags are illegal
 				$html = "<li><a href='file.php?file=$file&action=download'>";
 				$html .= "<h1><i class='fa fa-file fa-gl'></i> $file</h1>";
-				$html .= "</a>";
-				$html .= "<a href='file.php?file=$file&action=delete'><i class='fa fa-trash fa-gl'></i> Delete </a>";
-				$html .= "</li>";
+				$html .= "</a><ul>";
+				$html .= "<li><a href='file.php?file=$file&action=rename'><i class='fa fa-pencil fa-gl'></i> Rename</a></li>";
+				$html .= "<li><a href='file.php?file=$file&action=delete'><i class='fa fa-trash fa-gl'></i> Delete </a></li>";
+				$html .= "</ul></li>";
 				echo $html;
 			}
 
