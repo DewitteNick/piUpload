@@ -22,7 +22,7 @@ a:hover {
 	background-color: #3377CC;
 }
 
-/*----- PAGE TOP->DOWN -----*/
+/*----- HEADER + HOMEPAGE TOP->DOWN -----*/
 
 header{
 	border-bottom: 1px solid black;
@@ -88,6 +88,7 @@ nav > ul > li > a:hover {
 #fileList > ul > li {
 	margin: 2vh 0;
 	box-shadow: 0 0 8px 0 #000000;
+	position: relative;		/*code to make modify buttons work....*/
 }
 
 #fileList > ul > li:hover {
@@ -101,12 +102,11 @@ nav > ul > li > a:hover {
 #fileList > ul > li > a {
 	display: inline-block;
 	line-height: 250%;
-	vertical-align: text-bottom;
 }
 
 #fileList > ul > li > a:first-of-type {
 	padding-left: 3vw;
-	width: 77vw;
+	width: 67vw;
 	border-right: 1px solid black;
 }
 
@@ -115,6 +115,31 @@ nav > ul > li > a:hover {
 	font-weight: 600;
 }
 
+#fileList > ul > li > ul {
+	display: inline-block;
+	width: calc(30vw - 1px);
+	min-width: 166px;
+	text-align: center;
+	height: 100%;
+	position: absolute;
+}
+
+#fileList > ul > li > ul > li {
+	height: 100%;
+	display: inline-block;
+}
+
+#fileList > ul > li > ul > li > a {
+	display: block;
+	width: calc((30vw - 3px) / 2);
+	min-width: 82px;
+	border-right: 1px solid black;
+	height: 100%;
+	line-height: 2.5rem;
+}
+
+/*
+
 #fileList > ul > li > a + a {
 	text-align: right;
 	width: 10vw;
@@ -122,43 +147,78 @@ nav > ul > li > a:hover {
 }
 
 
-/*
-#fileList {
-	margin-top: 1rem;
+/*----- FORM PAGES -----*/
+
+form {
+	margin-top: 2rem;
 }
 
-#fileList > ul > li {
-	box-shadow: 0 0 6px 0 #000000;
-	padding: 0.25rem 8vw 0.25rem 3vw;
-	margin: 1rem 0;
-}
-
-#fileList > ul > li:hover {
-	box-shadow: 0 0 12px 3px #3F3F3F;
-}
-
-#fileList > ul > li:nth-child(2n+1) {
+form > fieldset {
+	display: block;
+	width: 25vw;
+	min-width: 250px;
+	padding: 1rem;
+	margin: 0 auto;
+	border-radius: calc(1vw + 1vh);
 	background-color: #E7E7E7;
 }
 
-#fileList > ul > li > h1 {
-	display: inline-block;
+form > fieldset > label {
+	margin-left: 2vw;
+	font-size: 1.5rem;
+}
+
+form > fieldset > input {
+	display: block;
+	margin: 0 auto 1rem auto;
+	width: 75%;
 	font-size: 1.25rem;
-	font-weight: 500;
-	margin: 0.5rem 0;
 }
 
-#fileList > ul > li > ul {
-	display: inline-block;
+form > fieldset > a{
+	display: block;
 	text-align: center;
-	float: right;
-	margin-top: 0.6rem;
+	margin-bottom: 1rem;
 }
 
-#fileList > ul > li > ul >li {
-	display: inline-block;
-	margin-right: 2rem;
+form > fieldset > a:hover {
+	color: #4488DD;
 }
+
+form > fieldset > button {
+	display: block;
+	margin: 0 auto;
+	padding: 0.5rem;
+	background-color: #E7E7E7;
+	border: 1px solid black;
+	border-radius: 0.5rem;
+	font-weight: 700;
+}
+
+form > fieldset > button:hover {
+	color: #4488DD;
+	border-color: #4488DD;
+}
+
+body > div > a {
+	display: inline-block;
+	font-size: 1.5rem;
+	border: 1px solid black;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	width: 250px;
+	text-align: center;
+	margin: 2rem calc((100vw - 250px) / 2);
+}
+
+body > div > a:hover {
+	color: #4488DD;
+	border-color: #4488DD;
+	text-decoration: none;
+	background-color: #E7E7E7;
+}
+
+
 /**/
 
 

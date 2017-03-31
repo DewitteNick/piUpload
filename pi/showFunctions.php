@@ -20,11 +20,13 @@ function showLoginForm()
                 <label for="pass">Password</label>
                 <input type="password" name="pass" id="pass">
 
-                <input type="submit">
-            </fieldset>
+                <button type="submit">
+					<i class="fa fa-sign-in fa-lg"></i> Log in
+				</button>
+			</fieldset>
         </form>
 
-        <a href=register.php>Register here</a>
+        <a href=register.php><i class="fa fa-plus-circle fa-lg"></i> Register here</a>
     </div>
     <?php
 }
@@ -45,14 +47,15 @@ function showRegisterForm()
                 <label for="pass2">Repeat password</label>
                 <input type="password" name="pass2" id="pass2">
 
-                <a href="terms.html" target="_blank">By registering you agree with the terms and agreements listed
-                    here.</a>
+                <a href="terms.html" target="_blank">By registering you agree with these terms and agreements.</a>
 
-                <input type="submit">
+                <button type="submit">
+					<i class="fa fa-user fa-gl"></i> Create account
+				</button>
             </fieldset>
         </form>
 
-        <a href="index.php">Existing accounts</a>
+        <a href="index.php"><i class="fa fa-address-book fa-gl"></i> Existing accounts</a>
     </div>
     <?php
 }
@@ -67,7 +70,9 @@ function showUploadForm()
             <label for="file">Select a file</label>
             <input type="file" name="file" id="file">
 
-            <input type="submit">
+            <button type="submit">
+				<i class="fa fa-cloud-upload fa-gl"></i> Upload file
+			</button>
 
         </fieldset>
     </form>
