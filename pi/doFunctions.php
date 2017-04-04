@@ -1,9 +1,12 @@
 <?php
 
+$options = array("cost" => 12);	//NOTE 0.5 sec on pi, seems fair...
+
 function checkLogin($name, $pass) {
     $db = Upload_db::getUploadInstance();
-    $valid = $db->checkLogin($name, $pass);
-    return $valid;
+    $passCrypt = $db->getPass($name);
+    $valid = password_verify($pass, $passCrypt);
+	return $valid;
 }
 
 
@@ -14,9 +17,11 @@ function redirect($url) {
 
 function registerUser($username, $password, $password2) {
     $success = false;
+    global $options;
     $db = Upload_db::getUploadInstance();
     if($password == $password2) {
-        $success = $db->registerUser($username, $password);
+    	$passCrypt = password_hash($password, PASSWORD_BCRYPT, $options);
+        $success = $db->registerUser($username, $passCrypt);
     }
     if($success) {
     	mkdir("upload/".$username);
@@ -54,11 +59,12 @@ function checkFile($file) {
 
 
 function saveFile($file) {
-    //TODO add file to sql
-    $db = Upload_db::getUploadInstance();
-    $db->addFile($file);
     $targetDir = "upload/".$_SESSION['name']."/";
     $success = move_uploaded_file($file['tmp_name'], $targetDir.$file['name']);
+    if($success) {
+		$db = Upload_db::getUploadInstance();
+		$db->addFile($file);
+	}
     return $success;
 }
 
@@ -80,17 +86,6 @@ function checkAvailability($file) {
 function downloadFile($file){
 	$fullPath = "upload/".$_SESSION['name']."/".$file;
 	try {
-		/*
-		header('Content-Description: File Transfer');
-		header('Content-Type: application/octet-stream');
-		header('Content-Disposition: attachment; filename="' . $file . '"');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate');
-		header('Pragma: public');
-		header('content-length: ' . filesize('upload/' . $_SESSION['name'] . "/" . $file));
-		readfile("upload/".$_SESSION['name']."/".$file);
-		exit;
-		*/
 		header('Content-Description: File Transfer');
 		header('Content-type: '.mime_content_type($fullPath));
 		header('Content-Disposition: attachment; filename="'.$file.'"');
@@ -113,6 +108,16 @@ function removeFile($file) {
 	unlink($path);
 	$db = Upload_db::getUploadInstance();
 	$db->removeFile($file, $_SESSION['name']);
+}
+
+
+function renameFile($file, $newname) {
+	$path = "upload/".$_SESSION['name']."/".$file;
+	$success = copy($path, "upload/".$_SESSION['name']."/".$newname);
+	if($success) {
+		$db = Upload_db::getUploadInstance();
+		$db->renameFile($file, $newname, $_SESSION['name']);
+	}
 }
 
 

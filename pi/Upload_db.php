@@ -42,24 +42,25 @@ class Upload_db
 
     //TODO sql functions here
 
-    public function checkLogin($username, $password) {
-        $valid = false;
+    public function getPass($username) {
+        $passCrypt = "";
         try {
-            $sql = "select * from upload.users where username like :username";
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username", $username);
-            $stmt->execute();
-            $login = $stmt->fetchAll(PDO::FETCH_OBJ);
-            if(!empty($login)) {
-                $login = $login[0];
-                if ($login->password == $password) {
-                    $valid = true;
-                }
-            }
-        }catch(PDOException $e){
-            die($e->getMessage());
-        }
-        return $valid;
+			$sql = "select password from upload.users where username like :username";
+			$stmt = $this->dbh->prepare($sql);
+			$stmt->bindParam(":username", $username);
+			$stmt->execute();
+			$login = $stmt->fetchAll(PDO::FETCH_COLUMN);
+			if(!empty($login)) {
+				$login = $login[0];
+			} else {
+				echo "<div class='error'><p>Failed to fetch login</p></div>";
+				$login = "";
+			}
+			$passCrypt = $login;
+		}catch(PDOException $e) {
+        	die($e->getMessage());
+		}
+		return $passCrypt;
     }
 
     public function registerUser($username, $password) {
@@ -142,6 +143,10 @@ class Upload_db
 		}catch(PDOException $e) {
     		die($e->getMessage());
 		}
+	}
+
+	public function renameFile($file, $newfile, $username) {
+    	//TODO
 	}
 
 }

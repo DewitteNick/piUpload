@@ -19,6 +19,13 @@ if(checkAvailability($file)) {
 		case "delete":
 			removeFile($file);
 			break;
+		case "rename":
+			if(isset($_GET['newname'])) {
+				renameFile($file, $_GET['newname']);
+			}else{
+				echo "<h1>NYI</h1>";
+			}
+			break;
 		default:
 			//TODO nothing?
 			break;
