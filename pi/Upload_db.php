@@ -72,7 +72,7 @@ class Upload_db
             $stmt->execute();
             $resultset = $stmt->fetchAll(PDO::FETCH_OBJ);
             if(empty($resultset)) {
-                $sql = "insert into upload.users values (:username, :password);";
+                $sql = "insert into upload.users (username, password) values (:username, :password);";
                 $stmt = $this->dbh->prepare($sql);
                 $stmt->bindParam(":username", $username);
                 $stmt->bindParam(":password", $password);
@@ -90,7 +90,7 @@ class Upload_db
             $sql = " insert into upload.files(username, filecode, filename) values (:username,:filecode,:filename)";
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindParam(":username",$_SESSION['name']);
-            $stmt->bindParam(":filecode",$file['name']);
+            $stmt->bindParam(":filecode",$file['type']);
             $stmt->bindParam(":filename",$file['name']);
             $stmt->execute();
         }catch(PDOException $e) {
@@ -147,6 +147,10 @@ class Upload_db
 
 	public function renameFile($file, $newfile, $username) {
     	//TODO
+	}
+
+	public function saveSetting($setting, $state, $username) {
+//    	"select * from upload.settings where username like :username ";
 	}
 
 }

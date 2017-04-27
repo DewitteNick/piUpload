@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "version": "1.0.0.0",
+  "name": "GoWest drive",
+  "short_name": "GoWest drive",
+  "start_url": "/pi/public/index.html",
+  "background_color": "#00FFFF",
+  "description": "Online cloud project for HoWest S4 TI-CCCP Mobile Web App Development.",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "preer_related_applications": false,
+  "scope": "/pi/",
+  "theme_color": "aliceblue",
+  "icons": [
+	{
+	  "src": "assets/icons/cloud_128.png",
+	  "sizes": "128x128",
+	  "type": "image/png"
+	},
+	{
+	  "src": "assets/icons/cloud_128.png",
+	  "sizes": "128x128",
+	  "type": "image/png"
+	}
+  ],
+  "related_applications": [
+	{
+		"platform": "web"
+  	}
+  ]
+}

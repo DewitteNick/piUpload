@@ -19,7 +19,7 @@ function registerUser($username, $password, $password2) {
     $success = false;
     global $options;
     $db = Upload_db::getUploadInstance();
-    if($password == $password2) {
+    if($password == $password2 and strlen($password) >= 15) {
     	$passCrypt = password_hash($password, PASSWORD_BCRYPT, $options);
         $success = $db->registerUser($username, $passCrypt);
     }
@@ -72,13 +72,26 @@ function saveFile($file) {
 function getFiles() {
     $db = Upload_db::getUploadInstance();
     $files = $db->getAllFiles($_SESSION['name']);
-    return $files;
+	return $files;
 }
 
 
 function checkAvailability($file) {
-    $db = Upload_db::getUploadInstance();
-    $valid = $db->checkValidity($file, $_SESSION['name']);
+	$valid = false;
+	if (!is_null($file)) {
+		if(!is_array($file)) {
+			$db = Upload_db::getUploadInstance();
+			$valid = $db->checkValidity($file, $_SESSION['name']);
+			return $valid;
+		}
+		foreach($file as $item) {
+			$db = Upload_db::getUploadInstance();
+			$valid = $db->checkValidity($item, $_SESSION['name']);
+			if($valid == false) {
+				return $valid;
+			}
+		}
+	}
     return $valid;
 }
 
@@ -118,6 +131,33 @@ function renameFile($file, $newname) {
 		$db = Upload_db::getUploadInstance();
 		$db->renameFile($file, $newname, $_SESSION['name']);
 	}
+}
+
+/*
+ * Returns an <li> with a label + inputfield for the user to specify the value of the setting
+ */
+function showSettingField($setting) {
+	$name = $setting['name'];
+	$type = $setting['type'];
+	$description = $setting['description'];
+
+	$html = "<li>";
+	$html .= "<label for='$name'>$description</label>";
+	switch($type) {
+		case "bool":
+			$html .= "<input type='checkbox' id='$name' name='$name' value='true'>";
+			break;
+		default:
+			//TODO ???
+			break;
+	}
+	$html .= "</li>";
+	return $html;
+}
+
+
+function saveSettings($setting, $state) {
+
 }
 
 
