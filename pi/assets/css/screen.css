@@ -19,7 +19,7 @@ body {
   /* ----- => FORM PAGES TOP-DOWN <= ----- */
   /* ( Ex.: Login page, upload page, ... ) */
   header {
-    background-color: #E7E7FF;
+    background-color: #D0E7FF;
     padding: 1rem 4vw; }
     header h1 {
       display: inline-block;
@@ -34,7 +34,7 @@ body {
     header #homeButton {
       content: "Home"; }
     header #homeButton:hover, header #homeButton:focus {
-      color: #26619C; }
+      color: #50859c; }
 
   nav ul {
     text-align: center;
@@ -46,15 +46,15 @@ body {
         display: inline-block;
         padding: 1rem;
         border: 1px solid black;
-        background-color: #E7E7FF;
+        background-color: #D0E7FF;
         text-decoration: none;
         border-radius: 1.5rem;
         margin: 1.5rem 3vw;
         width: 100px;
         overflow: hidden; }
       nav ul li a:hover, nav ul li a:focus {
-        background-color: #A7A7A7;
-        box-shadow: 0 0 6px 1px #777777;
+        background-color: #90A7A7;
+        box-shadow: 0 0 6px 1px #878787;
         text-decoration: underline; }
   nav #menuDropper {
     display: none; }
@@ -64,7 +64,7 @@ body {
     margin: 2rem auto;
     padding: 2vh 2vw;
     border-radius: calc(2vw + 2vh);
-    background-color: #E7E7FF; }
+    background-color: #D0E7FF; }
     div form fieldset {
       width: 480px;
       margin: 0 auto;
@@ -80,19 +80,19 @@ body {
         margin-bottom: 2rem;
         font-size: 1.5rem; }
       div form fieldset input:focus {
-        box-shadow: 0 0 3px 0 #777777;
+        box-shadow: 0 0 3px 0 #878787;
         border-color: transparent; }
       div form fieldset button {
         display: inline-block;
-        background-color: #E7E7FF;
+        background-color: #D0E7FF;
         border-radius: 1.5rem;
         width: 128px;
         margin: 0 calc((480px - 100px) / 2);
         height: 48px;
         border: 1px solid black; }
       div form fieldset button:hover, div form fieldset button:focus {
-        background-color: #A7A7A7;
-        box-shadow: 0 0 8px 2px #777777;
+        background-color: #90A7A7;
+        box-shadow: 0 0 8px 2px #878787;
         text-decoration: underline; }
   div a {
     display: inline-block;
@@ -103,8 +103,8 @@ body {
     border: 1px solid black;
     border-radius: 1.5rem; }
   div a:hover, div a:focus {
-    background-color: #A7A7A7;
-    box-shadow: 0 0 8px 2px #777777;
+    background-color: #90A7A7;
+    box-shadow: 0 0 8px 2px #878787;
     text-decoration: underline; }
 
   #fileList form {
@@ -126,11 +126,12 @@ body {
         border: none;
         border-radius: 0;
         text-decoration: none;
-        border-left: 1px solid #A7A7A7;
-        width: calc(55vw - 40px - 1px); }
+        border-left: 1px solid #90A7A7;
+        width: calc(55vw - 40px - 1px);
+        white-space: nowrap; }
       #fileList form ul li a:hover {
-        background-color: #26619C;
-        box-shadow: 0 0 16px 0 #0000CC; }
+        background-color: #50859c;
+        box-shadow: 0 0 16px 0 #50859c; }
       #fileList form ul li ul {
         display: inline-block;
         width: 25vw; }
@@ -142,7 +143,7 @@ body {
   /* ----- => FORM PAGES TOP-DOWN <= ----- */
   /* ( Ex.: Login page, upload page, ... ) */
   header {
-    background-color: #E7E7FF;
+    background-color: #D0E7FF;
     padding-top: 3vh; }
     header h1 {
       display: block;
@@ -163,7 +164,7 @@ body {
         display: block;
         text-align: center; }
     header #homeButton:hover, header #homeButton:focus {
-      color: #26619C; }
+      color: #50859c; }
 
   nav {
     font-size: 1.5rem;
@@ -180,7 +181,7 @@ body {
         display: block;
         text-align: center; }
       nav #menuDropper i:hover, nav #menuDropper i:focus {
-        color: #26619C; }
+        color: #50859c; }
     nav ul {
       display: inline-block;
       width: 80%; }
@@ -193,12 +194,12 @@ body {
           padding: 0.5rem;
           border-radius: 1rem;
           border: 1px solid black;
-          background-color: #E7E7FF;
+          background-color: #D0E7FF;
           text-align: center;
           line-height: 200%; }
         nav ul li a:hover, nav ul li a:focus {
-          background-color: #A7A7A7;
-          box-shadow: 0 0 12px 1px #777777; }
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
 
   div {
     width: 100vw;
@@ -206,7 +207,7 @@ body {
     div form {
       margin: 3vh 5%;
       padding: 1rem;
-      background-color: #E7E7FF;
+      background-color: #D0E7FF;
       border-radius: 1rem; }
       div form fieldset {
         display: block; }
@@ -229,12 +230,12 @@ body {
           line-height: 200%;
           padding: 0.5rem;
           border-radius: 0.5rem;
-          background-color: #E7E7FF;
+          background-color: #D0E7FF;
           border: 1px solid black;
           margin: auto; }
         div form fieldset button:hover, div form fieldset button:focus {
-          background-color: #A7A7A7;
-          box-shadow: 0 0 12px 1px #777777; }
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
     div a {
       display: block;
       font-size: 1.5rem;
@@ -244,12 +245,12 @@ body {
       padding: 0.5rem;
       border: 1px solid black;
       border-radius: 0.5rem;
-      background-color: #E7E7FF;
+      background-color: #D0E7FF;
       text-decoration: none;
       text-align: center; }
     div a:hover, div a:focus {
-      background-color: #A7A7A7;
-      box-shadow: 0 0 12px 1px #777777; }
+      background-color: #90A7A7;
+      box-shadow: 0 0 12px 1px #878787; }
 
   #fileList {
     min-height: 500px; }
@@ -263,11 +264,11 @@ body {
         display: inline-block;
         width: 100px;
         height: 100px;
-        background-image: url("../media/icons/checkbox_unchecked.png");
+        background-image: url("../media/custom_elements/checkbox_unchecked.png");
         background-size: 100px;
         background-repeat: no-repeat; }
       #fileList form ul li input:checked {
-        background-image: url("../media/icons/checkbox_checked.png"); }
+        background-image: url("../media/custom_elements/checkbox_checked.png"); }
       #fileList form ul li a {
         all: initial;
         display: inline-block;
@@ -282,7 +283,7 @@ body {
         #fileList form ul li a i {
           display: none; }
       #fileList form ul li a:hover, #fileList form ul li a:focus {
-        background-color: #A7A7A7; }
+        background-color: #90A7A7; }
       #fileList form ul li ul {
         display: block;
         width: 100%;
@@ -310,7 +311,7 @@ body {
   /* ----- => FORM PAGES TOP-DOWN <= ----- */
   /* ( Ex.: Login page, upload page, ... ) */
   header {
-    background-color: #E7E7FF;
+    background-color: #D0E7FF;
     padding-top: 3vh; }
     header h1 {
       display: block;
@@ -331,7 +332,7 @@ body {
         display: block;
         text-align: center; }
     header #homeButton:hover, header #homeButton:focus {
-      color: #26619C; }
+      color: #50859c; }
 
   nav {
     font-size: 1.5rem;
@@ -348,7 +349,7 @@ body {
         display: block;
         text-align: center; }
       nav #menuDropper i:hover, nav #menuDropper i:focus {
-        color: #26619C; }
+        color: #50859c; }
     nav ul {
       display: inline-block;
       width: 80%; }
@@ -361,12 +362,12 @@ body {
           padding: 0.5rem;
           border-radius: 1rem;
           border: 1px solid black;
-          background-color: #E7E7FF;
+          background-color: #D0E7FF;
           text-align: center;
           line-height: 200%; }
         nav ul li a:hover, nav ul li a:focus {
-          background-color: #A7A7A7;
-          box-shadow: 0 0 12px 1px #777777; }
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
 
   div {
     width: 100vw;
@@ -374,7 +375,7 @@ body {
     div form {
       margin: 3vh 5%;
       padding: 1rem;
-      background-color: #E7E7FF;
+      background-color: #D0E7FF;
       border-radius: 1rem; }
       div form fieldset {
         display: block; }
@@ -397,12 +398,12 @@ body {
           line-height: 200%;
           padding: 0.5rem;
           border-radius: 0.5rem;
-          background-color: #E7E7FF;
+          background-color: #D0E7FF;
           border: 1px solid black;
           margin: auto; }
         div form fieldset button:hover, div form fieldset button:focus {
-          background-color: #A7A7A7;
-          box-shadow: 0 0 12px 1px #777777; }
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
     div a {
       display: block;
       font-size: 1.5rem;
@@ -412,12 +413,12 @@ body {
       padding: 0.5rem;
       border: 1px solid black;
       border-radius: 0.5rem;
-      background-color: #E7E7FF;
+      background-color: #D0E7FF;
       text-decoration: none;
       text-align: center; }
     div a:hover, div a:focus {
-      background-color: #A7A7A7;
-      box-shadow: 0 0 12px 1px #777777; }
+      background-color: #90A7A7;
+      box-shadow: 0 0 12px 1px #878787; }
 
   #fileList {
     min-height: 500px; }
@@ -431,11 +432,11 @@ body {
         display: inline-block;
         width: 60px;
         height: 60px;
-        background-image: url("../media/icons/checkbox_unchecked.png");
+        background-image: url("../media/custom_elements/checkbox_unchecked.png");
         background-size: 60px;
         background-repeat: no-repeat; }
       #fileList form ul li input:checked {
-        background-image: url("../media/icons/checkbox_checked.png"); }
+        background-image: url("../media/custom_elements/checkbox_checked.png"); }
       #fileList form ul li a {
         all: initial;
         display: inline-block;
@@ -450,7 +451,7 @@ body {
         #fileList form ul li a i {
           display: none; }
       #fileList form ul li a:hover, #fileList form ul li a:focus {
-        background-color: #A7A7A7; }
+        background-color: #90A7A7; }
       #fileList form ul li ul {
         display: block;
         width: 100%;

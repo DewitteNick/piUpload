@@ -10,11 +10,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PHP page</title>
+    <title>GoWest drive title</title>
     <meta name="author" content="Nick Dewitte"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/screen.css">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="icon" href="assets/media/icons/favicon.ico">
 </head>
 <body>
 <header class="cf">

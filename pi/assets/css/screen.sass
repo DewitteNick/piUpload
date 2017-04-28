@@ -2,11 +2,11 @@
 
 $textColor: #000000
 $backgroundColor: #FFFFFF
-$backgroundAccentL: #E7E7FF
-$backgroundAccentD: #A7A7A7
+$backgroundAccentL: #D0E7FF
+$backgroundAccentD: #90A7A7
 $backgroundHighlight: #0000CC
-$shadowColorL: #777777
-$buttonBlue: #26619C			//38 97 156
+$shadowColorL: #878787
+$buttonBlue: #50859c
 
 $mainTitleSize: 3rem
 $sideTitleSize: 2rem
@@ -180,11 +180,14 @@ body
 						border-left: 1px solid $backgroundAccentD
 						//border-right: 1px solid $backgroundAccentD
 						width: calc(55vw - 40px - 1px)			//NOTE First link takes up 55/80 of the form, minus the 40px of the checkbox and minus the border of 1px
+						white-space: nowrap
+						//overflow hidden			//NOTE this causes issues
+
 
 					a:hover
 						background-color: $buttonBlue
 						//box-shadow: 0 0 16px -1px $backgroundHighlight
-						box-shadow: 0 0 16px 0 $backgroundHighlight
+						box-shadow: 0 0 16px 0 $buttonBlue
 
 					ul
 						display: inline-block
@@ -361,12 +364,12 @@ body
 						display: inline-block
 						width: 100px
 						height: 100px
-						background-image: url('../media/icons/checkbox_unchecked.png')
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
 						background-size: 100px
 						background-repeat: no-repeat
 
 					input:checked
-						background-image: url('../media/icons/checkbox_checked.png')
+						background-image: url('../media/custom_elements/checkbox_checked.png')
 
 					a
 						all: initial
@@ -580,12 +583,12 @@ body
 						display: inline-block
 						width: 60px
 						height: 60px
-						background-image: url('../media/icons/checkbox_unchecked.png')
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
 						background-size: 60px
 						background-repeat: no-repeat
 
 					input:checked
-						background-image: url('../media/icons/checkbox_checked.png')
+						background-image: url('../media/custom_elements/checkbox_checked.png')
 
 					a
 						all: initial
