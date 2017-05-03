@@ -8,7 +8,7 @@ require_once "assets/data/header.php";
 		<a href="" id="menuDropper"><i class="fa fa-caret-square-o-down fa-rotate-180 fa-3x"></i></a>
 		<ul id="menu">
 			<li>
-				<a href="upload.php"><i class="fa fa-cloud-upload fa-lg"></i> Upload </a>
+				<a href="file.php"><i class="fa fa-cloud-upload fa-lg"></i> Upload </a>
 			</li>
 			<li>
 				<a href="settings.php"><i class="fa fa-gear fa-lg"></i> Settings </a>
@@ -33,9 +33,9 @@ $files = getFiles();
 
 				foreach ($files as $file) {
 					//NOTE nested anchor tags are illegal
-					$html = "<li class='cf'><input type='checkbox' name='file[]' value='$file' class='selector'>";
+					$html = "<li class='cf' id='$file'><input type='checkbox' name='file[]' value='$file' class='selector'>";
 
-					$html .= "<a href='file.php?file=$file&action=download'>";
+					$html .= "<a href='file.php?file=$file'>";
 					$html .= "<h1><i class ='fa ";
 					/*
 					Switch over the icon depending on the kind of file
@@ -45,14 +45,9 @@ $files = getFiles();
 
 					$html .= " fa-gl'></i> $file</h1>";
 					$html .= "</a><ul>";
-					$html .= "<li><a href='file.php?file=$file&action=rename'><i class='fa fa-pencil fa-gl'></i> Rename</a></li>";
-					$html .= "<li><a href='file.php?file=$file&action=delete'><i class='fa fa-trash fa-gl'></i> Delete </a></li>";
+					$html .= "<li><a href='#' class='renameButton'><i class='fa fa-pencil fa-gl'></i> Rename</a></li>";
+					$html .= "<li><a href='#' class='deleteButton'><i class='fa fa-trash fa-gl'></i> Delete </a></li>";
 					$html .= "</ul></li>";
-					/*
-					if(!empty(next($files))){
-						$html .= "<hr>";
-					}
-					*/
 					echo $html;
 				}
 

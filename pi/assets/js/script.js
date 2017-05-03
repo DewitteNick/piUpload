@@ -70,6 +70,41 @@ function init() {
 	//globals.menuOffsetTop = $('#navigation').offset().top;
 }
 
+//NOTE crUd UPDATE
+function updateFile(e) {
+	e.preventDefault();
+	var li = this.closest('li').closest('ul').closest('li');
+	var file = $(li).attr('id');
+	console.log(file);
+	/*
+	var newName = prompt('Please enter a new name:');
+	if(newName === null || newName === "") {
+		//TODO What happens when the user cancels it?
+	}else{
+		console.log(newName);
+		$.ajax({
+			url: "file.php?file=" + file,
+		})
+	}
+	/**/
+}
+
+//NOTE cruD DELETE
+function deleteFile(e) {	//NOTE This function sends a delete request to the PHP code, and if it succeeds, it removes the list item from the DOM structure
+	e.preventDefault();
+	var li = this.closest('li').closest('ul').closest('li');
+	var file = $(li).attr('id');
+	$.ajax({
+		url: "file.php?file=" + file,
+		method: "DELETE"
+	}).done(function (data) {
+		//TODO todo
+		if(data) {
+			$(li).remove();
+		}
+	})
+}
+
 
 
 $(document).ready(function () {
@@ -77,4 +112,6 @@ $(document).ready(function () {
 	$('.selector').on('change',checkEnableMassButtons);
 	$('#menuDropper').on('click',toggleMenuDrop);
 	//$(window).on('scroll',positionMenuDrop);
+	$('.deleteButton').on('click',deleteFile);
+	$('.renameButton').on('click',updateFile);
 });

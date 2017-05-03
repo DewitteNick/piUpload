@@ -45,9 +45,9 @@ function showRegisterForm()
 				<marquee>should have a minimum length of 15 characters</marquee>
 				<input type="password" name="pass" id="pass" placeholder="password" required>
 				<br>
-				<label for="pass2">Repeat password</label>
+				<label for="email">Email for password recovery</label>
 				<marquee>Perhaps optionally ask for an email?</marquee>
-				<input type="password" name="pass2" id="pass2">
+				<input type="email" name="email" id="email">
 				<br>
 				<a href="terms.html" target="_blank">By registering you agree with these terms and agreements.</a>
 
@@ -66,7 +66,7 @@ function showRegisterForm()
 function showUploadForm()
 {
 	?>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
+	<form action="file.php" method="post" enctype="multipart/form-data">
 		<fieldset>
 
 			<label for="file">Select a file</label>

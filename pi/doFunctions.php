@@ -1,5 +1,7 @@
 <?php
 
+require_once "Config.php";
+
 $options = array("cost" => 12);	//NOTE 0.5 sec on pi, seems fair...
 
 function checkLogin($name, $pass) {
@@ -15,14 +17,17 @@ function redirect($url) {
     die();
 }
 
-function registerUser($username, $password, $password2) {
+function registerUser($username, $password, $email) {
     $success = false;
     global $options;
     $db = Upload_db::getUploadInstance();
-    if($password == $password2 and strlen($password) >= 15) {
+    // $password2 -> $email
+    if(strlen($password) >= 13) {
     	$passCrypt = password_hash($password, PASSWORD_BCRYPT, $options);
         $success = $db->registerUser($username, $passCrypt);
-    }
+    }else{
+    	echo "password is too short";
+	}
     if($success) {
     	mkdir("upload/".$username);
 	}
@@ -34,7 +39,9 @@ function checkFile($file) {
     if($file['error'] !== 0) {
         return false;
     }
-    $allowedFileTypes = array('image/jpeg','image/png','image/gif','image/bmp','text/plain');
+    $allowedFileTypes = Config::getConfigInstance()->getMimetypes();
+//    $allowedFileTypes = array('image/jpeg','image/png','image/gif','image/bmp','text/plain');
+
     $maxFileSize = 2000000000;  //NOTE php file size? (=> this is 2 GB)
     $targetFile = "upload/".$_SESSION['name']."/".$file['name'];
     $uploadOk = 0;
@@ -59,19 +66,27 @@ function checkFile($file) {
 
 
 function saveFile($file) {
+	$success = checkFile($file);
     $targetDir = "upload/".$_SESSION['name']."/";
-    $success = move_uploaded_file($file['tmp_name'], $targetDir.$file['name']);
     if($success) {
-		$db = Upload_db::getUploadInstance();
-		$db->addFile($file);
+		$success = move_uploaded_file($file['tmp_name'], $targetDir . $file['name']);
 	}
     return $success;
 }
 
 
 function getFiles() {
+	$files = null;
+	$username = $_SESSION['name'];
+	$scanned = scandir("upload/$username");
+	array_shift($scanned);
+	array_shift($scanned);
+	/*
     $db = Upload_db::getUploadInstance();
     $files = $db->getAllFiles($_SESSION['name']);
+	return $files;
+	*/
+	$files = $scanned;
 	return $files;
 }
 
@@ -118,19 +133,20 @@ function downloadFile($file){
 
 function removeFile($file) {
 	$path = "upload/".$_SESSION['name']."/".$file;
-	unlink($path);
-	$db = Upload_db::getUploadInstance();
-	$db->removeFile($file, $_SESSION['name']);
+	$success = unlink($path);
+	return $success;
 }
 
 
 function renameFile($file, $newname) {
 	$path = "upload/".$_SESSION['name']."/".$file;
 	$success = copy($path, "upload/".$_SESSION['name']."/".$newname);
+	/*
 	if($success) {
 		$db = Upload_db::getUploadInstance();
 		$db->renameFile($file, $newname, $_SESSION['name']);
 	}
+	*/
 }
 
 /*
@@ -160,9 +176,30 @@ function saveSettings($setting, $state) {
 
 }
 
+/*
+function uploadFile() {
+	if(!isset($_FILES['file'])) {    //NOTE user arrives at the page
+		showUploadForm();
+	} else {    //NOTE user submitted a file
 
+		if(checkFile($_FILES['file'])) {     //NOTE legit file (img at the moment)
+			if(saveFile($_FILES['file'])) {  //NOTE upload successfull
+				redirect('home.php');
+			} else {     //NOTE upload failed after file check
+				echo "<p>There was an error processing the file</p>";
+				showUploadForm();
+			}
+		} else {     //NOTE non-allowed file
+			echo "<p>File was rejected</p>";
+			var_dump($_FILES['file']);
+			showUploadForm();
+		}
 
+	}
 
+}
+
+*/
 
 
 

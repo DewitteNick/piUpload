@@ -85,36 +85,6 @@ class Upload_db
         return $success;
     }
 
-    public function addFile($file) {
-        try{
-            $sql = " insert into upload.files(username, filecode, filename) values (:username,:filecode,:filename)";
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username",$_SESSION['name']);
-            $stmt->bindParam(":filecode",$file['type']);
-            $stmt->bindParam(":filename",$file['name']);
-            $stmt->execute();
-        }catch(PDOException $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function getAllFiles($name) {
-        $files = [];
-        try{
-            $sql = "select filename from upload.files where username like :username";
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username", $name);
-            $stmt->execute();
-            $resultSet = $stmt->fetchAll(PDO::FETCH_COLUMN);
-            foreach($resultSet as $file) {
-                array_push($files, $file);
-            }
-        }catch(PDOException $e) {
-            die($e->getMessage());
-        }
-        return $files;
-    }
-
     public function checkValidity($file, $name) {
         $valid = false;
         try{
@@ -132,22 +102,6 @@ class Upload_db
         }
         return $valid;
     }
-
-    public function removeFile($file, $username) {
-    	try {
-    		$sql = "delete from upload.files where filename like :filename and username like :username";
-    		$stmt = $this->dbh->prepare($sql);
-    		$stmt->bindParam(":filename", $file);
-    		$stmt->bindParam(":username", $username);
-    		$stmt->execute();
-		}catch(PDOException $e) {
-    		die($e->getMessage());
-		}
-	}
-
-	public function renameFile($file, $newfile, $username) {
-    	//TODO
-	}
 
 	public function saveSetting($setting, $state, $username) {
 //    	"select * from upload.settings where username like :username ";

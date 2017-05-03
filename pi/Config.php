@@ -25,7 +25,16 @@ class Config
         $this->username = "upload";
         $this->password = "upload";
 
-        $this->mimetypes = array();
+        $this->mimetypes = array(
+			"application/json",
+        	"application/pdf",
+        	"image/jpg",
+        	"image/png",
+			"text/css",
+			"text/html",
+			"text/plain",
+			"text/xml"
+		);
         $this->uploadfolder = "assets/media/upload";
     }
 

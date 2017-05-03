@@ -167,9 +167,12 @@ body
 					overflow: hidden
 
 					input
+						//all: initial
+						position: relative
 						display: inline-block
-						width: 40px							//NOTE Checkbox is 40 px wide, goes from form
+						width: 40px						//NOTE Checkbox is 40 px wide, goes from form
 						margin: 0
+
 
 					a
 						display: inline-block
@@ -181,7 +184,7 @@ body
 						//border-right: 1px solid $backgroundAccentD
 						width: calc(55vw - 40px - 1px)			//NOTE First link takes up 55/80 of the form, minus the 40px of the checkbox and minus the border of 1px
 						white-space: nowrap
-						//overflow hidden			//NOTE this causes issues
+						//overflow: hidden			//NOTE this causes issues
 
 
 					a:hover
@@ -192,6 +195,8 @@ body
 					ul
 						display: inline-block
 						width: 25vw
+						background-color: $backgroundColor
+						z-index: 9999
 
 						li
 							all: initial
@@ -441,9 +446,7 @@ body
 				text-align: center
 
 		#homeButton
-			display: inline-block
-			width: 100px
-			margin-left: calc(50vw - 57px)
+			display: block
 			margin-top: $tinyTextSize
 			font-size: $sideTitleSize
 			text-decoration: none
@@ -464,10 +467,7 @@ body
 			text-decoration: none
 
 		#menuDropper
-			display: inline-block
-			width: calc(20% - 1rem)
-			padding: $tinyTextSize
-			float: right
+			display: block
 
 			i
 				display: block
@@ -479,6 +479,7 @@ body
 		ul
 			display: inline-block
 			width: 80%
+			margin: 0 10%
 
 			li
 				display: inline-block
@@ -568,7 +569,6 @@ body
 			//TODO remove default styles
 
 			ul
-				//background-color: purple
 
 				li
 					//all: initial
@@ -580,9 +580,10 @@ body
 
 					input
 						all: initial
-						display: inline-block
+						display: block
 						width: 60px
 						height: 60px
+						margin: 0 auto
 						background-image: url('../media/custom_elements/checkbox_unchecked.png')
 						background-size: 60px
 						background-repeat: no-repeat
@@ -593,10 +594,9 @@ body
 					a
 						all: initial
 						display: inline-block
-						width: calc(100% - 60px)
+						width: 100% //calc(100% - 60px)
 						line-height: 60px
 						text-align: center
-						float: right
 						font-size: $defaultTextSize
 						overflow: hidden
 						white-space: nowrap
@@ -624,17 +624,14 @@ body
 								display: inline-block
 								width: 100%
 								line-height: 60px
+								height: 60px
 								text-align: center
-								font-size: $defaultTextSize
-								overflow: hidden
-								white-space: nowrap
-								text-indent: -101vw
+								font-size: 0
 
 								i
 									display: inline-block
-									position: relative
-									top: 0
-									bottom
+									font-size: $mainTitleSize
+									margin-top: calc((60px - 3rem) / 3)
 
 						li:last-of-type
 							border-right: none

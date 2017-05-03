@@ -117,6 +117,7 @@ body {
       border-radius: 0.5rem;
       overflow: hidden; }
       #fileList form ul li input {
+        position: relative;
         display: inline-block;
         width: 40px;
         margin: 0; }
@@ -134,7 +135,9 @@ body {
         box-shadow: 0 0 16px 0 #50859c; }
       #fileList form ul li ul {
         display: inline-block;
-        width: 25vw; }
+        width: 25vw;
+        background-color: #FFFFFF;
+        z-index: 9999; }
         #fileList form ul li ul li {
           all: initial; }
         #fileList form ul li ul a {
@@ -322,9 +325,7 @@ body {
         color: #0000CC;
         text-align: center; }
     header #homeButton {
-      display: inline-block;
-      width: 100px;
-      margin-left: calc(50vw - 57px);
+      display: block;
       margin-top: 0.5rem;
       font-size: 2rem;
       text-decoration: none; }
@@ -341,10 +342,7 @@ body {
     nav a {
       text-decoration: none; }
     nav #menuDropper {
-      display: inline-block;
-      width: calc(20% - 1rem);
-      padding: 0.5rem;
-      float: right; }
+      display: block; }
       nav #menuDropper i {
         display: block;
         text-align: center; }
@@ -352,7 +350,8 @@ body {
         color: #50859c; }
     nav ul {
       display: inline-block;
-      width: 80%; }
+      width: 80%;
+      margin: 0 10%; }
       nav ul li {
         display: inline-block;
         width: 70%;
@@ -429,9 +428,10 @@ body {
       border-radius: 1rem; }
       #fileList form ul li input {
         all: initial;
-        display: inline-block;
+        display: block;
         width: 60px;
         height: 60px;
+        margin: 0 auto;
         background-image: url("../media/custom_elements/checkbox_unchecked.png");
         background-size: 60px;
         background-repeat: no-repeat; }
@@ -440,10 +440,9 @@ body {
       #fileList form ul li a {
         all: initial;
         display: inline-block;
-        width: calc(100% - 60px);
+        width: 100%;
         line-height: 60px;
         text-align: center;
-        float: right;
         font-size: 1rem;
         overflow: hidden;
         white-space: nowrap;
@@ -466,15 +465,13 @@ body {
             display: inline-block;
             width: 100%;
             line-height: 60px;
+            height: 60px;
             text-align: center;
-            font-size: 1rem;
-            overflow: hidden;
-            white-space: nowrap;
-            text-indent: -101vw; }
+            font-size: 0; }
             #fileList form ul li ul li a i {
               display: inline-block;
-              position: relative;
-              top: 0; }
+              font-size: 3rem;
+              margin-top: calc((60px - 3rem) / 3); }
         #fileList form ul li ul li:last-of-type {
           border-right: none;
           width: 50%; } }
