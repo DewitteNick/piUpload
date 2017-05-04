@@ -20,6 +20,8 @@ if(isset($_GET['file'])) {	//NOTE GET/UPDATE/DELETE == RUD of the crud operation
 			break;
 		case "UPDATE":
 			//NOTE User wants to update content			U	(rename file)
+			$success = renameFile($file, $_GET['name']);
+			echo json_encode(array("success" => $success));
 			break;
 		case "DELETE":
 			//NOTE User wants to delete content			D	(remove file)

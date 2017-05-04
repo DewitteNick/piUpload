@@ -140,13 +140,8 @@ function removeFile($file) {
 
 function renameFile($file, $newname) {
 	$path = "upload/".$_SESSION['name']."/".$file;
-	$success = copy($path, "upload/".$_SESSION['name']."/".$newname);
-	/*
-	if($success) {
-		$db = Upload_db::getUploadInstance();
-		$db->renameFile($file, $newname, $_SESSION['name']);
-	}
-	*/
+	$success = rename($path, "upload/".$_SESSION['name']."/".$newname);
+	return $success;
 }
 
 /*

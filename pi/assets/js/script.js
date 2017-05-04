@@ -75,15 +75,21 @@ function updateFile(e) {
 	e.preventDefault();
 	var li = this.closest('li').closest('ul').closest('li');
 	var file = $(li).attr('id');
-	console.log(file);
-	/*
 	var newName = prompt('Please enter a new name:');
 	if(newName === null || newName === "") {
-		//TODO What happens when the user cancels it?
+		//TODO What happens when the user cancels it?	NOTE what sould i do here?
 	}else{
-		console.log(newName);
 		$.ajax({
-			url: "file.php?file=" + file,
+			url: "file.php?file=" + file + "&name=" + newName,
+			method: "UPDATE"
+		}).done(function (data) {
+			console.log(data);
+			data = JSON.parse(data);
+			if(data.success) {
+				$(li).find('h1').text(newName);			//NOTE Change the display name
+				$(li).attr('id', newName);				// TODO change ID
+				// window.location.replace('home.php');	//TODO get rid of this
+			}
 		})
 	}
 	/**/
@@ -98,8 +104,8 @@ function deleteFile(e) {	//NOTE This function sends a delete request to the PHP 
 		url: "file.php?file=" + file,
 		method: "DELETE"
 	}).done(function (data) {
-		//TODO todo
-		if(data) {
+		data = JSON.parse(data);
+		if(data.success) {
 			$(li).remove();
 		}
 	})
