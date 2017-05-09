@@ -21,10 +21,9 @@ function registerUser($username, $password, $email) {
     $success = false;
     global $options;
     $db = Upload_db::getUploadInstance();
-    // $password2 -> $email
     if(strlen($password) >= 13) {
     	$passCrypt = password_hash($password, PASSWORD_BCRYPT, $options);
-        $success = $db->registerUser($username, $passCrypt);
+        $success = $db->registerUser($username, $passCrypt, $email);
     }else{
     	echo "password is too short";
 	}
@@ -67,7 +66,8 @@ function checkFile($file) {
 
 function saveFile($file) {
 	$success = checkFile($file);
-    $targetDir = "upload/".$_SESSION['name']."/";
+	$targetDir = "upload/".$_SESSION['name']."/";
+
     if($success) {
 		$success = move_uploaded_file($file['tmp_name'], $targetDir . $file['name']);
 	}
@@ -113,6 +113,7 @@ function checkAvailability($file) {
 
 function downloadFile($file){
 	$fullPath = "upload/".$_SESSION['name']."/".$file;
+	//TODO check availibility and ownership
 	try {
 		header('Content-Description: File Transfer');
 		header('Content-type: '.mime_content_type($fullPath));
@@ -171,30 +172,36 @@ function saveSettings($setting, $state) {
 
 }
 
-/*
-function uploadFile() {
-	if(!isset($_FILES['file'])) {    //NOTE user arrives at the page
-		showUploadForm();
-	} else {    //NOTE user submitted a file
 
-		if(checkFile($_FILES['file'])) {     //NOTE legit file (img at the moment)
-			if(saveFile($_FILES['file'])) {  //NOTE upload successfull
-				redirect('home.php');
-			} else {     //NOTE upload failed after file check
-				echo "<p>There was an error processing the file</p>";
-				showUploadForm();
-			}
-		} else {     //NOTE non-allowed file
-			echo "<p>File was rejected</p>";
-			var_dump($_FILES['file']);
-			showUploadForm();
-		}
+function createZipFile($files) {
+	//TODO http://stackoverflow.com/questions/1754352/download-multiple-files-as-a-zip-file-using-php
+	//TODO http://stackoverflow.com/questions/14658639/php-save-zip-to-disk
+	//TODO http://www.9lessons.info/2012/06/creating-zip-file-with-php.html
 
+	$homedir = "upload/" . $_SESSION['name'] . "/";
+
+	$zip = new ZipArchive();
+	$zipname =  date('U') . ".zip";
+	$zip->open($homedir . $zipname, ZipArchive::CREATE);
+
+	foreach($files as $file) {
+		$zip->addFile($homedir . $file, $file);
 	}
 
+	return $zipname;
+
+/*
+	$zipname = date("U");
+//	$path = "/upload/" . $_SESSION['name'] . "/" . $zipname . ".zip";
+	$zip = new ZipArchive();
+	$zip->open($zipname, ZipArchive::CREATE);
+	//$zip->addFile($files[0]);
+	$zip->close();
+//	$zipObject = array("tmp_name" => null, "name" => $zipname);
+//	saveFile($zipObject);
+*/
 }
 
-*/
 
 
 

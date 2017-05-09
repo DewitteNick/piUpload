@@ -1,11 +1,18 @@
 /* ----- => VARIABLE DECLARATION<= ----- */
 /* ----- => GENERAL PAGE RULES <= ----- */
+/*Nr. 404 */
+.\34 \30 \34 {
+  display: block;
+  margin: 10vh auto;
+  border: 8px solid black; }
+
 .cf:after {
   content: "";
   display: table;
   clear: both; }
 
 body {
+  position: relative;
   color: #000000;
   background-color: #FFFFFF;
   font-family: "sans-serif";
@@ -37,6 +44,7 @@ body {
       color: #50859c; }
 
   nav ul {
+    display: block !important;
     text-align: center;
     border-bottom: 1px solid black;
     border-top: 1px solid black; }
@@ -71,14 +79,66 @@ body {
       padding: 24px 0; }
       div form fieldset label {
         display: inline-block;
-        width: 80px;
-        height: 24px; }
+        width: 120px;
+        height: 24px;
+        text-align: center; }
+      div form fieldset label[for=file] {
+        all: initial;
+        display: block;
+        position: relative;
+        line-height: 36px;
+        height: 36px;
+        border: 1px solid black; }
+        div form fieldset label[for=file] img {
+          height: 30px;
+          margin: 3px 1rem; }
+        div form fieldset label[for=file] span {
+          all: initial;
+          display: inline-block;
+          line-height: 36px;
+          font-size: 1.25rem;
+          float: right;
+          padding-right: 1.5rem;
+          max-width: calc(100% - 32px - 0.5rem);
+          white-space: nowrap;
+          overflow: hidden; }
+      div form fieldset label[for=file]:hover {
+        box-shadow: 0 0 8px 2px #878787;
+        border: 1px solid #90A7A7; }
+      div form fieldset ul li {
+        height: 36px;
+        position: relative; }
+        div form fieldset ul li label {
+          display: inline-block;
+          position: absolute;
+          width: calc(100% - 36px);
+          line-height: 36px;
+          height: 36px; }
+        div form fieldset ul li input {
+          all: initial;
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          margin: 0;
+          float: right;
+          background-image: url("../media/custom_elements/checkbox_unchecked.png");
+          background-repeat: no-repeat;
+          background-size: 36px; }
+        div form fieldset ul li input:checked {
+          background-image: url("../media/custom_elements/checkbox_checked.png"); }
       div form fieldset input {
         display: inline-block;
-        width: 380px;
+        width: 340px;
         height: 24px;
         margin-bottom: 2rem;
         font-size: 1.5rem; }
+      div form fieldset input[type=file] {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -99; }
       div form fieldset input:focus {
         box-shadow: 0 0 3px 0 #878787;
         border-color: transparent; }
@@ -94,6 +154,16 @@ body {
         background-color: #90A7A7;
         box-shadow: 0 0 8px 2px #878787;
         text-decoration: underline; }
+      div form fieldset a {
+        display: block;
+        text-decoration: none;
+        line-height: 100%;
+        padding: 0.5rem;
+        margin: 2rem auto;
+        width: 80%; }
+    div form aside {
+      display: block;
+      text-align: center; }
   div a {
     display: inline-block;
     width: 160px;
@@ -115,21 +185,29 @@ body {
       margin: 0.5rem 0;
       background-color: #FFFFFF;
       border-radius: 0.5rem;
-      overflow: hidden; }
+      overflow: hidden;
+      height: 3rem; }
       #fileList form ul li input {
+        all: initial;
         position: relative;
         display: inline-block;
         width: 40px;
-        margin: 0; }
+        height: 40px;
+        margin-left: 10px;
+        background-repeat: no-repeat;
+        background-size: 40px;
+        background-image: url("../media/custom_elements/checkbox_unchecked.png"); }
+      #fileList form ul li input:checked {
+        background-image: url("../media/custom_elements/checkbox_checked.png"); }
       #fileList form ul li a {
         display: inline-block;
         margin: 0 0 0 -1px;
         border: none;
         border-radius: 0;
         text-decoration: none;
-        border-left: 1px solid #90A7A7;
-        width: calc(55vw - 40px - 1px);
-        white-space: nowrap; }
+        width: calc(55vw - 50px - 1px);
+        white-space: nowrap;
+        vertical-align: bottom; }
       #fileList form ul li a:hover {
         background-color: #50859c;
         box-shadow: 0 0 16px 0 #50859c; }
@@ -141,7 +219,37 @@ body {
         #fileList form ul li ul li {
           all: initial; }
         #fileList form ul li ul a {
-          width: calc((25vw - 2px) / 2); } }
+          width: calc((25vw - 2px) / 2);
+          border-left: 1px solid #90A7A7; }
+
+  footer {
+    display: inline-block;
+    width: 100vw;
+    height: 3rem;
+    position: fixed;
+    bottom: 0;
+    background-color: #D0E7FF;
+    font-size: 0.8rem; }
+    footer ul {
+      text-align: center;
+      height: 100%; }
+      footer ul li {
+        display: inline-block;
+        line-height: 3rem;
+        height: 3rem;
+        vertical-align: text-top;
+        margin: 0 1.5rem; }
+        footer ul li ol {
+          margin-top: 0.5rem; }
+          footer ul li ol li {
+            all: initial;
+            display: block;
+            font-size: 0.8rem;
+            text-align: center; }
+    footer a {
+      text-decoration: none; }
+    footer a:hover, footer a:focus {
+      text-decoration: underline; } }
 @media screen and (max-width: 699px) and (min-width: 350px) {
   /* ----- => FORM PAGES TOP-DOWN <= ----- */
   /* ( Ex.: Login page, upload page, ... ) */
@@ -218,14 +326,34 @@ body {
           display: block;
           text-align: center;
           font-size: 1.5rem;
-          margin-bottom: 2vh; }
-        div form fieldset input[type=text], div form fieldset input[type=password] {
+          margin-bottom: 1vh; }
+        div form fieldset label[for=file] {
+          display: block;
+          width: 80%;
+          margin: 0 auto; }
+          div form fieldset label[for=file] img {
+            display: block;
+            width: 200px;
+            margin: 0 auto; }
+          div form fieldset label[for=file] span {
+            display: block;
+            width: 100%;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem; }
+        div form fieldset input[type=text], div form fieldset input[type=password], div form fieldset input[type=email] {
           display: block;
           width: calc(80% - 2px);
           max-width: 350px;
-          margin: 0 auto 4vh auto;
+          margin: 0 auto 1vh auto;
           font-size: 1.5rem;
           padding: 4px; }
+        div form fieldset input[type=file] {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -99; }
         div form fieldset button {
           display: block;
           width: 160px;
@@ -239,6 +367,36 @@ body {
         div form fieldset button:hover, div form fieldset button:focus {
           background-color: #90A7A7;
           box-shadow: 0 0 12px 1px #878787; }
+        div form fieldset a {
+          display: block;
+          font-size: 1rem;
+          width: 80%;
+          margin: -1rem auto 1.5rem;
+          padding: 0.5rem; }
+      div form aside {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem; }
+      div form ul li {
+        position: relative;
+        display: block; }
+        div form ul li label {
+          display: inline-block;
+          font-size: 1rem;
+          width: calc(100% - 50px - 0.5rem);
+          position: absolute; }
+        div form ul li input {
+          all: initial;
+          margin: 0 0 0 0.5rem;
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          float: right;
+          background-image: url("../media/custom_elements/checkbox_unchecked.png");
+          background-repeat: no-repeat;
+          background-size: 50px; }
+        div form ul li input:checked {
+          background-image: url("../media/custom_elements/checkbox_checked.png"); }
     div a {
       display: block;
       font-size: 1.5rem;
@@ -381,15 +539,31 @@ body {
         div form fieldset label {
           display: block;
           text-align: center;
-          font-size: 1.5rem;
-          margin-bottom: 2vh; }
-        div form fieldset input[type=text], div form fieldset input[type=password] {
+          font-size: 1.5rem; }
+        div form fieldset label[for=file] {
+          display: block;
+          width: 80%;
+          margin: 0 auto; }
+          div form fieldset label[for=file] img {
+            width: 150px;
+            margin: 0 auto; }
+          div form fieldset label[for=file] span {
+            width: 100%;
+            font-size: 1.25rem; }
+        div form fieldset input[type=text], div form fieldset input[type=password], div form fieldset input[type=email] {
           display: block;
           width: calc(80% - 2px);
           max-width: 350px;
-          margin: 0 auto 4vh auto;
+          margin: 0 auto;
           font-size: 1.5rem;
           padding: 4px; }
+        div form fieldset input[type=file] {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -99; }
         div form fieldset button {
           display: block;
           width: 160px;
@@ -403,6 +577,15 @@ body {
         div form fieldset button:hover, div form fieldset button:focus {
           background-color: #90A7A7;
           box-shadow: 0 0 12px 1px #878787; }
+        div form fieldset a {
+          display: block;
+          font-size: 1rem;
+          width: 80%;
+          margin: 1rem auto; }
+      div form aside {
+        display: block;
+        text-align: center;
+        margin-top: 1rem; }
     div a {
       display: block;
       font-size: 1.5rem;

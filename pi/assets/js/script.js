@@ -1,5 +1,4 @@
 var globals = {
-	debug: false,
 	toggleMenu: null,
 	menuOffsetTop: null
 };
@@ -9,14 +8,12 @@ function checkEnableMassButtons() {
 	$('input:checked').each(function() {
 		selected.push($(this).attr('value'))
 	});
-	if(selected.length == 0) {
+	if(selected.length == 0) {	//NOTE all "mass" buttons should have the class "massButton", so they can be en/disabled
 		//TODO disable button
-		$('#massDelete').prop('disabled',true);
-		//NOTE more buttons?
+		$('.massButton').prop('disabled',true);
 	}else{
 		//TODO enable button
-		$('#massDelete').prop('disabled',false);
-		//NOTE more buttons?
+		$('.massButton').prop('disabled',false);
 	}
 }
 
@@ -44,30 +41,22 @@ function toggleMenuDrop(e) {
 		$('#menuDropper').addClass("fa-rotate-180");
 	}
 }
-/*
-function positionMenuDrop() {
-	var menu = $('#navigation');
-	if($(window).scrollTop() > globals.menuOffsetTop){
-		menu.addClass('fixed');
+
+function checkFileUploadLabel() {
+	var fileName = $('input[type=file]').val().replace('C:\\fakepath\\','');
+	var message = "Please wait...";
+	if(fileName !== '') {
+		message = "Selected file: " + fileName;
 	}else{
-		menu.removeClass('fixed');
+		message = "Please select a file...";
 	}
-}
-*/
-function showScreenSize() {
-	window.alert("Screen size is " + $(window).width() + " X " + $(window).height());
+	$('.fileName').html(message);
+	/**/
 }
 
 function init() {
 	checkEnableMassButtons();
-
-	if(globals.debug) {
-		showScreenSize();
-	}
-
 	globals.toggleMenu = createToggle();
-
-	//globals.menuOffsetTop = $('#navigation').offset().top;
 }
 
 //NOTE crUd UPDATE
@@ -83,16 +72,52 @@ function updateFile(e) {
 			url: "file.php?file=" + file + "&name=" + newName,
 			method: "UPDATE"
 		}).done(function (data) {
-			console.log(data);
-			data = JSON.parse(data);
-			if(data.success) {
-				$(li).find('h1').text(newName);			//NOTE Change the display name
-				$(li).attr('id', newName);				// TODO change ID
-				// window.location.replace('home.php');	//TODO get rid of this
+			try {
+				data = JSON.parse(data);
+				if (data.success) {
+					$(li).find('h1').text(newName);			//NOTE Change the display name
+					$(li).attr('id', newName);				// TODO change ID
+					// window.location.replace('home.php');	//TODO get rid of this
+				}
+			}catch(e) {
 			}
 		})
 	}
 	/**/
+}
+
+
+function getSelectedItemsAsGetString() {
+	var checked = $(':checked');
+	var getParameter = "?";
+	//For-in loop isn't working
+	for(var i = 0; i < checked.length; i++) {
+		var itemToDelete = $(checked[i].closest('li')).attr('id');
+		itemToDelete = itemToDelete.replace(' ', '%20');
+		if(getParameter !== "?") {
+			getParameter += "&"
+		}
+		getParameter += "file[]=" + itemToDelete;
+	}
+	return getParameter;
+}
+
+
+//NOTE cRud MASS READ
+function massDownloadFiles(e) {		//NOTE this will be implemented by making a read call passing an array, and should return a zip file.
+	e.preventDefault();
+	var getParameter = getSelectedItemsAsGetString();
+	// console.log("http://localhost:8181/file.php" + getParameter);
+	$.ajax({
+		url: "file.php" + getParameter,
+		method: "GET"
+	}).done(function(data) {
+		try{
+			window.location = 'file.php?file=' + data;
+			//TODO once this fetches, delete zip folder afterwards.
+		}catch(e) {
+		}
+	});
 }
 
 //NOTE cruD DELETE
@@ -104,9 +129,34 @@ function deleteFile(e) {	//NOTE This function sends a delete request to the PHP 
 		url: "file.php?file=" + file,
 		method: "DELETE"
 	}).done(function (data) {
-		data = JSON.parse(data);
-		if(data.success) {
-			$(li).remove();
+		try {
+			data = JSON.parse(data);
+			if(data.success) {
+				$(li).remove();
+			}
+		}catch(e) {
+			console.log(data);
+		}
+	})
+}
+
+
+//NOTE cruD MASS DELETE
+function massDeleteFiles(e) {
+	e.preventDefault();
+	var getParameter = getSelectedItemsAsGetString();
+	console.log(getParameter);
+	$.ajax({
+		url: "file.php" + getParameter,
+		method: "DELETE"
+	}).done(function (data) {
+		try {
+			data = JSON.parse(data);
+			for(var item in data.success) {
+				document.getElementById(item).remove();
+			}
+		}catch(e) {
+			console.log(data);
 		}
 	})
 }
@@ -120,4 +170,7 @@ $(document).ready(function () {
 	//$(window).on('scroll',positionMenuDrop);
 	$('.deleteButton').on('click',deleteFile);
 	$('.renameButton').on('click',updateFile);
+	$('input[type=file]').on('change',checkFileUploadLabel);
+	$('#massDelete').on('click',massDeleteFiles);
+	$('#massDownload').on('click',massDownloadFiles);
 });

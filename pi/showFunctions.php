@@ -38,16 +38,14 @@ function showRegisterForm()
 	<div>
 		<form action="register.php" method="post">
 			<fieldset>
-				<label for="name">Name</label>
+				<label for="name">Name *</label>
 				<input type="text" name="name" id="name" placeholder="username" required autofocus>
 				<br>
-				<label for="pass">Password</label>
-				<marquee>should have a minimum length of 15 characters</marquee>
+				<label for="pass">Password *</span></label>
 				<input type="password" name="pass" id="pass" placeholder="password" required>
 				<br>
-				<label for="email">Email for password recovery</label>
-				<marquee>Perhaps optionally ask for an email?</marquee>
-				<input type="email" name="email" id="email">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email" placeholder="email">
 				<br>
 				<a href="terms.html" target="_blank">By registering you agree with these terms and agreements.</a>
 
@@ -55,6 +53,7 @@ function showRegisterForm()
 					<i class="fa fa-user fa-gl"></i> Create
 				</button>
 			</fieldset>
+			<aside>Fields marked with * are mandatory</aside>
 		</form>
 
 		<a href="index.php"><i class="fa fa-address-book fa-gl"></i> Existing accounts</a>
@@ -66,18 +65,20 @@ function showRegisterForm()
 function showUploadForm()
 {
 	?>
-	<form action="file.php" method="post" enctype="multipart/form-data">
-		<fieldset>
+	<div>
+		<form action="file.php" method="post" enctype="multipart/form-data">
+			<fieldset>
 
-			<label for="file">Select a file</label>
-			<input type="file" name="file" id="file">
-			<br>
-			<button type="submit">
-				<i class="fa fa-cloud-upload fa-gl"></i> Upload file
-			</button>
+				<label for="file" class="fileLabel"><img src="assets/media/custom_elements/upload.svg" alt=""><span class="fileName">Please select a file...</span></label>
+				<input type="file" name="file" id="file">
+				<br>
+				<button type="submit">
+					<i class="fa fa-cloud-upload fa-gl"></i> Upload file
+				</button>
 
-		</fieldset>
-	</form>
+			</fieldset>
+		</form>
+	</div>
 	<?php
 }
 
@@ -85,24 +86,26 @@ function showUploadForm()
 function showSettingsForm($settings)
 {
 	?>
-	<form action="settings.php" method="post">
-		<fieldset>
-			<ul>
-				<?php
-				foreach($settings as $setting) {
-					echo showSettingField($setting);
-				}
-				?>
-			</ul>
+	<div>
+		<form action="settings.php" method="post">
+			<fieldset>
+				<ul>
+					<?php
+					foreach($settings as $setting) {
+						echo showSettingField($setting);
+					}
+					?>
+				</ul>
 
-			<input type="hidden" name="dummy" value="dummy">
+				<input type="hidden" name="dummy" value="dummy">
 
-			<button type="submit">
-				<i class="fa fa-save fa-gl"></i> Save settings
-			</button>
+				<button type="submit">
+					<i class="fa fa-save fa-gl"></i> Save settings
+				</button>
 
-		</fieldset>
-	</form>
+			</fieldset>
+		</form>
+	</div>
 	<?php
 }
 

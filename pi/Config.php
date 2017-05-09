@@ -26,14 +26,28 @@ class Config
         $this->password = "upload";
 
         $this->mimetypes = array(
+        	"application/javascript",
 			"application/json",
         	"application/pdf",
+        	"application/x-compressed",
+        	"application/x-zip-compressed",
+        	"application/zip",
+
+        	"audio/mpeg",
+        	"audio/mpeg3",
+
         	"image/jpg",
+        	"image/jpeg",
         	"image/png",
+
 			"text/css",
 			"text/html",
+			"text/javascript",
 			"text/plain",
-			"text/xml"
+			"text/xml",
+
+			"video/mpeg"
+
 		);
         $this->uploadfolder = "assets/media/upload";
     }

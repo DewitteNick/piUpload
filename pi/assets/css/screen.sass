@@ -12,10 +12,17 @@ $mainTitleSize: 3rem
 $sideTitleSize: 2rem
 $accentTextSize: 1.5rem
 $defaultTextSize: 1rem
+$smallTextSize: 0.8rem
 $tinyTextSize: 0.5rem
 $fontStack: 'sans-serif'
 
 /* ----- => GENERAL PAGE RULES <= ----- */
+
+/*Nr. 404*/
+.\34 \30 \34
+	display: block
+	margin: 10vh auto
+	border: 8px solid black
 
 .cf:after
 	content: ""
@@ -23,6 +30,7 @@ $fontStack: 'sans-serif'
 	clear: both
 
 body
+	position: relative
 	color: $textColor
 	background-color: $backgroundColor
 	font-family: $fontStack
@@ -67,6 +75,7 @@ body
 	nav
 
 		ul
+			display: block !important
 			text-align: center
 			border-bottom: 1px solid black
 			border-top: 1px solid black
@@ -109,15 +118,84 @@ body
 
 				label
 					display: inline-block
-					width: 80px
+					width: 120px
 					height: 24px
+					text-align: center
+
+				label[for=file]
+					all: initial
+					display: block
+					position: relative
+					line-height: 36px
+					height: 36px
+					border: 1px solid black
+
+					img
+						height: 30px
+						margin: 3px $defaultTextSize
+
+					span
+						all: initial
+						display: inline-block
+						line-height: 36px
+						font-size: $defaultTextSize * 1.25
+						float: right
+						padding-right: $accentTextSize
+						max-width: calc(100% - 32px - 0.5rem)
+						//NOTE fix this
+						white-space: nowrap
+						overflow: hidden
+
+				label[for=file]:hover
+					box-shadow: 0 0 8px 2px $shadowColorL
+					border: 1px solid $backgroundAccentD
+
+				ul
+
+					li
+						height: 36px
+						position: relative
+
+						label
+							display: inline-block
+							position: absolute
+							//top: 0
+							width: calc(100% - 36px)
+							line-height: 36px
+							height: 36px
+
+						input
+							all: initial
+							//outline: none
+							display: inline-block
+							width: 36px
+							height: 36px
+							margin: 0
+							float: right
+							background-image: url('../media/custom_elements/checkbox_unchecked.png')
+							background-repeat: no-repeat
+							background-size: 36px
+
+
+						input:checked
+							background-image: url('../media/custom_elements/checkbox_checked.png')
+
+
 
 				input
 					display: inline-block
-					width: 380px
+					width: 340px
 					height: 24px
 					margin-bottom: $sideTitleSize
 					font-size: $accentTextSize
+
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -99
 
 				input:focus
 					box-shadow: 0 0 3px 0 $shadowColorL
@@ -136,6 +214,18 @@ body
 					background-color: $backgroundAccentD
 					box-shadow: 0 0 8px 2px $shadowColorL
 					text-decoration: underline
+
+				a
+					display: block
+					text-decoration: none
+					line-height: 100%
+					padding: $tinyTextSize
+					margin: $sideTitleSize auto
+					width: 80%
+
+			aside
+				display: block
+				text-align: center
 
 		a
 			display: inline-block
@@ -165,13 +255,21 @@ body
 					background-color: $backgroundColor
 					border-radius: $tinyTextSize
 					overflow: hidden
+					height: $mainTitleSize
 
 					input
-						//all: initial
+						all: initial
 						position: relative
 						display: inline-block
 						width: 40px						//NOTE Checkbox is 40 px wide, goes from form
-						margin: 0
+						height: 40px
+						margin-left: 10px				//NOTE additional 10 px
+						background-repeat: no-repeat
+						background-size: 40px
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
+
+					input:checked
+						background-image: url('../media/custom_elements/checkbox_checked.png')
 
 
 					a
@@ -180,11 +278,9 @@ body
 						border: none
 						border-radius: 0
 						text-decoration: none
-						border-left: 1px solid $backgroundAccentD
-						//border-right: 1px solid $backgroundAccentD
-						width: calc(55vw - 40px - 1px)			//NOTE First link takes up 55/80 of the form, minus the 40px of the checkbox and minus the border of 1px
+						width: calc(55vw - 50px - 1px)			//NOTE First link takes up 55/80 of the form, minus the 50px of the checkbox and minus the border of 1px
 						white-space: nowrap
-						//overflow: hidden			//NOTE this causes issues
+						vertical-align: bottom
 
 
 					a:hover
@@ -203,6 +299,44 @@ body
 
 						a
 							width: calc((25vw - 2px) / 2)		//NOTE The width of one link is the width of the list minus the borders, and divided by the amount of links
+							border-left: 1px solid $backgroundAccentD
+
+	footer
+		display: inline-block
+		width: 100vw
+		height: 3 * $defaultTextSize
+		position: fixed
+		bottom: 0
+		background-color: $backgroundAccentL
+		font-size: $smallTextSize
+
+		ul
+			text-align: center
+			height: 100%
+
+			li
+				display: inline-block
+				line-height: 3 * $defaultTextSize
+				height: 3 * $defaultTextSize
+				vertical-align: text-top
+				margin: 0 $accentTextSize
+
+				ol
+					margin-top: 0.5rem
+
+					li
+						all: initial
+						display: block
+						font-size: $smallTextSize
+						text-align: center
+
+		a
+			text-decoration: none
+
+		a:hover, a:focus
+			text-decoration: underline
+
+
 
 
 
@@ -301,15 +435,40 @@ body
 					display: block
 					text-align: center
 					font-size: $accentTextSize
-					margin-bottom: 2vh
+					margin-bottom: 1vh
 
-				input[type=text], input[type=password]
+				label[for=file]
+					display: block
+					width: 80%
+					margin: 0 auto
+
+					img
+						display: block
+						width: 200px
+						margin: 0 auto
+
+					span
+						display: block
+						width: 100%
+						font-size: $accentTextSize
+						margin: $accentTextSize 0 $defaultTextSize
+
+				input[type=text], input[type=password], input[type=email]
 					display: block
 					width: calc(80% - 2px)
 					max-width: 350px
-					margin: 0 auto 4vh auto
+					margin: 0 auto 1vh auto
 					font-size: $accentTextSize
 					padding: 4px
+
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -99
+
 
 				button
 					display: block
@@ -325,6 +484,46 @@ body
 				button:hover, button:focus
 					background-color: $backgroundAccentD
 					box-shadow: 0 0 12px 1px $shadowColorL
+
+				a
+					display: block
+					font-size: $defaultTextSize
+					width: 80%
+					margin: -$defaultTextSize auto $accentTextSize
+					padding: $tinyTextSize
+
+			aside
+				display: block
+				text-align: center
+				margin-top: $accentTextSize
+
+			ul
+
+				li
+					position: relative
+					display: block
+
+					label
+						display: inline-block
+						font-size: $defaultTextSize
+						width: calc(100% - 50px - 0.5rem)
+						position: absolute
+
+					input
+						all: initial
+						margin:  0 0 0 $tinyTextSize
+						display: inline-block
+						width: 50px
+						height: 50px
+						float: right
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
+						background-repeat: no-repeat
+						background-size: 50px
+
+					input:checked
+						background-image: url('../media/custom_elements/checkbox_checked.png')
+
+
 
 		a
 			display: block
@@ -516,15 +715,35 @@ body
 					display: block
 					text-align: center
 					font-size: $accentTextSize
-					margin-bottom: 2vh
 
-				input[type=text], input[type=password]
+				label[for=file]
+					display: block
+					width: 80%
+					margin: 0 auto
+
+					img
+						width: 150px
+						margin: 0 auto
+
+					span
+						width: 100%
+						font-size: $defaultTextSize * 1.25
+
+				input[type=text], input[type=password], input[type=email]
 					display: block
 					width: calc(80% - 2px)
 					max-width: 350px
-					margin: 0 auto 4vh auto
+					margin: 0 auto
 					font-size: $accentTextSize
 					padding: 4px
+
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -99
 
 				button
 					display: block
@@ -540,6 +759,17 @@ body
 				button:hover, button:focus
 					background-color: $backgroundAccentD
 					box-shadow: 0 0 12px 1px $shadowColorL
+
+				a
+					display: block
+					font-size: $defaultTextSize
+					width: 80%
+					margin: $defaultTextSize auto
+
+			aside
+				display: block
+				text-align: center
+				margin-top: $defaultTextSize
 
 		a
 			display: block

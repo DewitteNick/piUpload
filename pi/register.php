@@ -1,8 +1,40 @@
 <?php
 
+
+
+$httpVerb = $_SERVER['REQUEST_METHOD'];
+
+switch($httpVerb) {
+	case "GET":
+		require_once "assets/data/header.php";
+		showRegisterForm();
+		require_once "assets/data/footer.php";
+		break;
+	case "POST":
+		session_start();
+		require_once "doFunctions.php";
+		require_once "Upload_db.php";
+		$success = registerUser($_POST['name'],$_POST['pass'],$_POST['email']);
+		if($success) {
+			//TODO User registered
+			echo "succesfull registration";
+		}else{
+			//TODO User not registered
+			echo "failed to register";
+		}
+		session_abort();
+		break;
+	default:
+		echo "\"Mind your (HTTP) vocabulary!\" - Mom";
+		break;
+}
+
+
+
+/*
 require_once "assets/data/header.php";
 
-if(!isset($_POST['name']) || !isset($_POST['pass'])/* || !isset($_POST['pass2'])*/) {
+if(!isset($_POST['name']) || !isset($_POST['pass'])) {
     showRegisterForm();
 } else {
     $username = $_POST["name"];
@@ -17,3 +49,4 @@ if(!isset($_POST['name']) || !isset($_POST['pass'])/* || !isset($_POST['pass2'])
 }
 
 require_once "assets/data/footer.php";
+*/

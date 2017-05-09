@@ -27,7 +27,8 @@ $files = getFiles();
 
 	<div id="fileList">
 		<form method="get" action="file.php">
-			<input type="submit" value="Delete selected" id="massDelete" name="action"/>
+			<input type="submit" value="Delete selected" id="massDelete" class="massButton" name="action"/>
+			<input type="submit" value="Download selected" id="massDownload" class="massButton" name="action0"/>
 			<ul>
 				<?php
 
