@@ -68,22 +68,27 @@ function updateFile(e) {
 	if(newName === null || newName === "") {
 		//TODO What happens when the user cancels it?	NOTE what sould i do here?
 	}else{
-		$.ajax({
-			url: "file.php?file=" + file + "&name=" + newName,
-			method: "UPDATE"
-		}).done(function (data) {
-			try {
-				data = JSON.parse(data);
-				if (data.success) {
-					$(li).find('h1').text(newName);			//NOTE Change the display name
-					$(li).attr('id', newName);				// TODO change ID
-					// window.location.replace('home.php');	//TODO get rid of this
-				}
-			}catch(e) {
-			}
-		})
+		renameResource(file, newName);
 	}
 	/**/
+}
+
+
+function renameResource(resource, newName) {		//NOTE fix this
+	$.ajax({
+		url: "file.php?file=" + resource + "&name=" + newName,
+		method: "UPDATE"
+	}).done(function (data) {
+		console.log(data);
+		try {
+			data = JSON.parse(data);
+			if (data.success) {
+				$('#' + resource).attr('id', newName).find('h1').text(newName);	//TODO Works the first time, not afterwards. attribute not set?
+				// window.location.replace('home.php');	//TODO get rid of this
+			}
+		}catch(e) {
+		}
+	})
 }
 
 
@@ -152,7 +157,9 @@ function massDeleteFiles(e) {
 	}).done(function (data) {
 		try {
 			data = JSON.parse(data);
-			for(var item in data.success) {
+			console.log(data);
+			//data.success check to (prompt user to) refresh the page?
+			for(var item in data.filesDeleted) {
 				document.getElementById(item).remove();
 			}
 		}catch(e) {
@@ -162,15 +169,21 @@ function massDeleteFiles(e) {
 }
 
 
+function addFolder(e) {
+	e.preventDefault();
+
+}
+
+
 
 $(document).ready(function () {
 	init();
 	$('.selector').on('change',checkEnableMassButtons);
 	$('#menuDropper').on('click',toggleMenuDrop);
-	//$(window).on('scroll',positionMenuDrop);
 	$('.deleteButton').on('click',deleteFile);
 	$('.renameButton').on('click',updateFile);
 	$('input[type=file]').on('change',checkFileUploadLabel);
 	$('#massDelete').on('click',massDeleteFiles);
 	$('#massDownload').on('click',massDownloadFiles);
+	$('#addFolder').on('click',addFolder);
 });

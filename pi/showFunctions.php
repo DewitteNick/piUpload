@@ -18,7 +18,7 @@ function showLoginForm()
 				<input type="text" name="name" id="name" placeholder="name" required autofocus>
 				<br>
 				<label for="pass">Password</label>
-				<input type="password" name="pass" id="pass" placeholder="password" required>
+				<input type="password" name="pass" id="pass" placeholder="password" required autocomplete="off">
 				<br>
 				<button type="submit">
 					<i class="fa fa-sign-in fa-lg"></i> Log in
@@ -42,7 +42,7 @@ function showRegisterForm()
 				<input type="text" name="name" id="name" placeholder="username" required autofocus>
 				<br>
 				<label for="pass">Password *</span></label>
-				<input type="password" name="pass" id="pass" placeholder="password" required>
+				<input type="password" name="pass" id="pass" placeholder="password" required autocomplete="off">
 				<br>
 				<label for="email">Email</label>
 				<input type="email" name="email" id="email" placeholder="email">

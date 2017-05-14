@@ -174,14 +174,15 @@ function saveSettings($setting, $state) {
 
 
 function createZipFile($files) {
-	//TODO http://stackoverflow.com/questions/1754352/download-multiple-files-as-a-zip-file-using-php
-	//TODO http://stackoverflow.com/questions/14658639/php-save-zip-to-disk
-	//TODO http://www.9lessons.info/2012/06/creating-zip-file-with-php.html
+	//NOTE nice guide on zips http://www.9lessons.info/2012/06/creating-zip-file-with-php.html
 
 	$homedir = "upload/" . $_SESSION['name'] . "/";
 
 	$zip = new ZipArchive();
-	$zipname =  date('U') . ".zip";
+	//NOTE for now, we create a static name, and delete it before recreating it. In home.php, we will manually hide it. Not a good idea, but...
+	$zipname = "download.zip"; //$zipname =  date('U') . ".zip";
+	removeFile("download.zip");
+
 	$zip->open($homedir . $zipname, ZipArchive::CREATE);
 
 	foreach($files as $file) {
@@ -189,18 +190,8 @@ function createZipFile($files) {
 	}
 
 	return $zipname;
-
-/*
-	$zipname = date("U");
-//	$path = "/upload/" . $_SESSION['name'] . "/" . $zipname . ".zip";
-	$zip = new ZipArchive();
-	$zip->open($zipname, ZipArchive::CREATE);
-	//$zip->addFile($files[0]);
-	$zip->close();
-//	$zipObject = array("tmp_name" => null, "name" => $zipname);
-//	saveFile($zipObject);
-*/
 }
+
 
 
 

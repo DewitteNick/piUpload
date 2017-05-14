@@ -3,71 +3,86 @@
 //require_once "assets/data/header.php";
 
 $httpVerb = $_SERVER['REQUEST_METHOD'];
+$file = isset($_GET['file']) ? $_GET['file'] : null;
+$dir = isset($_GET['dir']) ? $_GET['dir'] : null;
 
-$file = null;
-if(isset($_GET['file'])) {	//NOTE GET/UPDATE/DELETE == RUD of the crud operations, all need get_file to be set
+$guiNeeded = $httpVerb == "GET" && is_null($file) &&is_null($dir);
+if($guiNeeded) {
+	require_once "assets/data/header.php";
+}else{
 	session_start();
 	require_once "showFunctions.php";
 	require_once "doFunctions.php";
 	require_once "Upload_db.php";
+}
 
-	$file = $_GET['file'];
-
-	switch ($httpVerb) {
-		case "GET":
-			//NOTE User wants to read content			R	(download file)
-			if(is_array($file)){
+switch($httpVerb) {
+	case "GET":
+		if(!is_null($file)) {
+			//NOTE download file(s)
+			if(is_array($file)) {
 				$zipfile = createZipFile($file);
 				echo $zipfile;
-			}else {
+			}else{
 				downloadFile($file);
 			}
-			break;
-		case "UPDATE":
-			//NOTE User wants to update content			U	(rename file)
-			$success = renameFile($file, $_GET['name']);
-			echo json_encode(array("success" => $success));
-			break;
-		case "DELETE":
-			//NOTE User wants to delete content			D	(remove file)
-			if(is_array($file)) {
-				$success = array();
-				foreach($file as $item) {
-					$itemSuccess = removeFile($item);
-					$success[$item] = $itemSuccess;
-				}
-				echo json_encode(array("success" => $success));
-			}else {
-				$success = removeFile($file);
-				echo json_encode(array("success" => $success));
+		}elseif(!is_null($dir)) {
+			//NOTE open directory -> howto? [later]
+
+		}else{
+			//NOTE show new file form
+			showUploadForm();
+		}
+		break;
+	case "UPDATE":
+			//NOTE Rename file
+		$newName = isset($_GET['name']) ? $_GET['name'] : null;
+		echo json_encode(array("success" => renameFile($file, $newName)));
+		break;
+	case "DELETE":
+			//NOTE Delete file
+		if(is_array($file)) {
+			echo json_encode(deleteMultipleFiles($file));
+		}else{
+				echo json_encode(array("success" => removeFile($file)));
+		}
+		break;
+	case "POST":
+			if(is_null($file)) {
+				//NOTE Create a new file
+				addNewFile();
+			}else{
+				//NOTE Create new directory
 			}
-			break;
-		default:
-			echo "No CRUD HTTP verb found. Please use POST/GET/UPDATE/DELETE";
-			break;
-	}
+		break;
+	default:
+		echo "Error 405. Wrong HTTP Verb.";
+		break;
+}
 
+if($guiNeeded) {
+	require_once "assets/data/footer.php";
+}else{
 	session_abort();
-}elseif(isset($_FILES['file'])){	//NOTE CREATE == C of the crud operations, needs the files_file to be set
-	session_start();
-	require_once "showFunctions.php";
-	require_once "doFunctions.php";
-	require_once "Upload_db.php";
+}
 
-	$file = $_FILES['file'];
+
+function deleteMultipleFiles($files) {
+	$success = array();
+	foreach($files as $item) {
+		$itemSuccess = removeFile($item);
+		$success[$item] = $itemSuccess;
+	}
+	$totalSuccess = !in_array(false, $success);
+	return array("success" => $totalSuccess, "filesDeleted" => $success);
+}
+
+function addNewFile() {
+	$file = isset($_FILES['file']) ? $_FILES['file'] : null;
 	$success = saveFile($file);
 	if($success) {
-		redirect('home.php');
+		redirect("home.php");
 	}else{
-		echo "<h1>file couldn't be uploaded</h1>";
-		var_dump($_POST);
-		var_dump($_GET);
-		var_dump($_FILES);
+		echo "<h1>File couldn't be uploaded.</h1>";
 	}
-
-	session_abort();
-}else{			//NOTE when no files are specified, no actions can be done. This is why there is a form shown to upload a new file.
-	require_once "assets/data/header.php";
-	showUploadForm();
-	require_once "assets/data/footer.php";
 }

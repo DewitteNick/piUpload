@@ -5,6 +5,7 @@ require_once "assets/data/header.php";
 $settings = array(
 	"confirmDelete" => array("name" => "confirmDelete", "type" => "bool", "description" => "Check this to delete files witouth confirmation prompt.", "default" => false)
 );
+//NOTE auto refresh on (deletion) error or prompt?
 
 
 if(empty($_POST)) {

@@ -1,4 +1,6 @@
 <?php
+	require_once 'headers.php';
+
     session_start();
     require_once "showFunctions.php";
     require_once "doFunctions.php";

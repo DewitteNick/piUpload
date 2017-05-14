@@ -4,7 +4,7 @@
   "name": "GoWest drive",
   "short_name": "GoWest drive",
   "start_url": "/",
-  "background_color": "#50859c",
+  "background_color": "0#50859c",
   "theme_color": "#50859c",
   "description": "Online cloud project for HoWest S4 TI-CCCP Mobile Web App Development.",
   "lang": "en-US",

@@ -34,27 +34,30 @@ $files = getFiles();
 
 				foreach ($files as $file) {
 					//NOTE nested anchor tags are illegal
-					$html = "<li class='cf' id='$file'><input type='checkbox' name='file[]' value='$file' class='selector'>";
+					if($file != "download.zip") {	//NOTE bad practice.... really bad... fix this somehow...
+						$html = "<li class='cf' id='$file'><input type='checkbox' name='file[]' value='$file' class='selector'>";
 
-					$html .= "<a href='file.php?file=$file'>";
-					$html .= "<h1><i class ='fa ";
-					/*
-					Switch over the icon depending on the kind of file
-					getIconClass($file['filetype']);
-					*/
-					$html .= "fa-file";
+						$html .= "<a href='file.php?file=$file'>";
+						$html .= "<h1><i class ='fa ";
+						/*
+						Switch over the icon depending on the kind of file
+						getIconClass($file['filetype']);
+						*/
+						$html .= "fa-file";
 
-					$html .= " fa-gl'></i> $file</h1>";
-					$html .= "</a><ul>";
-					$html .= "<li><a href='#' class='renameButton'><i class='fa fa-pencil fa-gl'></i> Rename</a></li>";
-					$html .= "<li><a href='#' class='deleteButton'><i class='fa fa-trash fa-gl'></i> Delete </a></li>";
-					$html .= "</ul></li>";
-					echo $html;
+						$html .= " fa-gl'></i> $file</h1>";
+						$html .= "</a><ul>";
+						$html .= "<li><a href='#' class='renameButton'><i class='fa fa-pencil fa-gl'></i> Rename</a></li>";
+						$html .= "<li><a href='#' class='deleteButton'><i class='fa fa-trash fa-gl'></i> Delete </a></li>";
+						$html .= "</ul></li>";
+						echo $html;
+					}
 				}
 
 				?>
 			</ul>
 		</form>
+		<!--<a href="#" class="fa fa-plus fa-lg" id="addFolder">Add a folder</a>-->
 	</div>
 <?php
 
