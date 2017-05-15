@@ -1,6 +1,7 @@
 var CACHE_NAME = 'GoWestDrive-v1';
 var urlsToCache = [
 	'/',
+	'manifest.json',
 	'/index.html',
 	'/terms.html',
 	'/assets/css/reset.css',
@@ -46,12 +47,22 @@ self.addEventListener('fetch', function (event) {
 	console.log('Fetching...');
 	event.respondWith(fetch(event.request)
 		.catch(function (error) {
-			console.log('No server connection', error);
 			return caches.open(CACHE_NAME)
 				.then(function (cache) {
 					return cache.match(event.request);	//TODO catch undefined
 				})
 		})
+		.then(function (data) {
+			if(data === undefined) {
+				data = caches.open(CACHE_NAME)
+					.then(function (cache) {
+						return cache.match('index.html');
+					});
+			}
+			return data;
+		})
+
+		/*
 		.catch(function (error) {						//TODO why is this not responding to 'undefined'?
 			console.log('No cached version found', error);
 			return caches.open(CACHE_NAME)
@@ -59,6 +70,7 @@ self.addEventListener('fetch', function (event) {
 					return cache.match('index.html');
 				})
 		})
+		*/
 	)
 
 	/*
