@@ -1,187 +1,662 @@
-/*------ GENERAL RULES ------*/
+/* ----- => VARIABLE DECLARATION<= ----- */
+/* ----- => GENERAL PAGE RULES <= ----- */
+/*Nr. 404 */
+.\34 \30 \34 {
+  display: block;
+  margin: 10vh auto;
+  border: 8px solid black; }
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both; }
 
 body {
-	font-size: 1rem;
-	font-family: sans-serif;
-	color: #000000;
-	background-color: #FFFFFF;
-}
+  position: relative;
+  color: #000000;
+  background-color: #FFFFFF;
+  font-family: "sans-serif";
+  font-size: 1rem; }
+  body a {
+    color: inherit; }
+  body a:hover, body a:focus {
+    text-decoration: none; }
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
+@media screen and (min-width: 700px) {
+  /* ----- => FORM PAGES TOP-DOWN <= ----- */
+  /* ( Ex.: Login page, upload page, ... ) */
+  header {
+    background-color: #D0E7FF;
+    padding: 1rem 4vw; }
+    header h1 {
+      display: inline-block;
+      float: left;
+      font-size: 3rem; }
+      header h1 span {
+        color: #0000CC; }
+    header #homeButton {
+      display: inline-block;
+      float: right;
+      font-size: 1.5rem; }
+    header #homeButton {
+      content: "Home"; }
+    header #homeButton:hover, header #homeButton:focus {
+      color: #50859c; }
 
-a:hover {
-	color: inherit;
-	text-decoration: underline;
-}
+  nav ul {
+    display: block !important;
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black; }
+    nav ul li {
+      display: inline-block; }
+      nav ul li a {
+        display: inline-block;
+        padding: 1rem;
+        border: 1px solid black;
+        background-color: #D0E7FF;
+        text-decoration: none;
+        border-radius: 1.5rem;
+        margin: 1.5rem 3vw;
+        width: 100px;
+        overflow: hidden; }
+      nav ul li a:hover, nav ul li a:focus {
+        background-color: #90A7A7;
+        box-shadow: 0 0 6px 1px #878787;
+        text-decoration: underline; }
+  nav #menuDropper {
+    display: none; }
 
-#fileList a:hover{
-	text-decoration: none;
-	background-color: #3377CC;
-}
+  div form {
+    width: 600px;
+    margin: 2rem auto;
+    padding: 2vh 2vw;
+    border-radius: calc(2vw + 2vh);
+    background-color: #D0E7FF; }
+    div form fieldset {
+      width: 480px;
+      margin: 0 auto;
+      padding: 24px 0; }
+      div form fieldset label {
+        display: inline-block;
+        width: 120px;
+        height: 24px;
+        text-align: center; }
+      div form fieldset label[for=file] {
+        all: initial;
+        display: block;
+        position: relative;
+        line-height: 36px;
+        height: 36px;
+        border: 1px solid black; }
+        div form fieldset label[for=file] img {
+          height: 30px;
+          margin: 3px 1rem; }
+        div form fieldset label[for=file] span {
+          all: initial;
+          display: inline-block;
+          line-height: 36px;
+          font-size: 1.25rem;
+          float: right;
+          padding-right: 1.5rem;
+          max-width: calc(100% - 32px - 0.5rem);
+          white-space: nowrap;
+          overflow: hidden; }
+      div form fieldset label[for=file]:hover {
+        box-shadow: 0 0 8px 2px #878787;
+        border: 1px solid #90A7A7; }
+      div form fieldset ul li {
+        height: 36px;
+        position: relative; }
+        div form fieldset ul li label {
+          display: inline-block;
+          position: absolute;
+          width: calc(100% - 36px);
+          line-height: 36px;
+          height: 36px; }
+        div form fieldset ul li input {
+          all: initial;
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          margin: 0;
+          float: right;
+          background-image: url("../media/custom_elements/checkbox_unchecked.png");
+          background-repeat: no-repeat;
+          background-size: 36px; }
+        div form fieldset ul li input:checked {
+          background-image: url("../media/custom_elements/checkbox_checked.png"); }
+      div form fieldset input {
+        display: inline-block;
+        width: 340px;
+        height: 24px;
+        margin-bottom: 2rem;
+        font-size: 1.5rem; }
+      div form fieldset input[type=file] {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -99; }
+      div form fieldset input:focus {
+        box-shadow: 0 0 3px 0 #878787;
+        border-color: transparent; }
+      div form fieldset button {
+        display: inline-block;
+        background-color: #D0E7FF;
+        border-radius: 1.5rem;
+        width: 128px;
+        margin: 0 calc((480px - 100px) / 2);
+        height: 48px;
+        border: 1px solid black; }
+      div form fieldset button:hover, div form fieldset button:focus {
+        background-color: #90A7A7;
+        box-shadow: 0 0 8px 2px #878787;
+        text-decoration: underline; }
+      div form fieldset a {
+        display: block;
+        text-decoration: none;
+        line-height: 100%;
+        padding: 0.5rem;
+        margin: 2rem auto;
+        width: 80%; }
+    div form aside {
+      display: block;
+      text-align: center; }
+  div a {
+    display: inline-block;
+    width: 160px;
+    line-height: 48px;
+    text-align: center;
+    margin-left: calc(50vw - 80px);
+    border: 1px solid black;
+    border-radius: 1.5rem; }
+  div a:hover, div a:focus {
+    background-color: #90A7A7;
+    box-shadow: 0 0 8px 2px #878787;
+    text-decoration: underline; }
 
-/*----- PAGE TOP->DOWN -----*/
+  #fileList form {
+    margin-top: 5vh;
+    width: 80vw; }
+    #fileList form ul li {
+      display: inline-block;
+      margin: 0.5rem 0;
+      background-color: #FFFFFF;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      height: 3rem; }
+      #fileList form ul li input {
+        all: initial;
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        background-repeat: no-repeat;
+        background-size: 40px;
+        background-image: url("../media/custom_elements/checkbox_unchecked.png"); }
+      #fileList form ul li input:checked {
+        background-image: url("../media/custom_elements/checkbox_checked.png"); }
+      #fileList form ul li a {
+        display: inline-block;
+        margin: 0 0 0 -1px;
+        border: none;
+        border-radius: 0;
+        text-decoration: none;
+        width: calc(55vw - 50px - 1px);
+        white-space: nowrap;
+        vertical-align: bottom; }
+      #fileList form ul li a:hover {
+        background-color: #50859c;
+        box-shadow: 0 0 16px 0 #50859c; }
+      #fileList form ul li ul {
+        display: inline-block;
+        width: 25vw;
+        background-color: #FFFFFF;
+        z-index: 9999; }
+        #fileList form ul li ul li {
+          all: initial; }
+        #fileList form ul li ul a {
+          width: calc((25vw - 2px) / 2);
+          border-left: 1px solid #90A7A7; }
 
-header{
-	border-bottom: 1px solid black;
-	background-color: #E7E7E7;
-	padding: 0.5rem 3rem;
-}
+  footer {
+    display: inline-block;
+    width: 100vw;
+    height: 3rem;
+    position: fixed;
+    bottom: 0;
+    background-color: #D0E7FF;
+    font-size: 0.8rem; }
+    footer ul {
+      text-align: center;
+      height: 100%; }
+      footer ul li {
+        display: inline-block;
+        line-height: 3rem;
+        height: 3rem;
+        vertical-align: text-top;
+        margin: 0 1.5rem; }
+        footer ul li ol {
+          margin-top: 0.5rem; }
+          footer ul li ol li {
+            all: initial;
+            display: block;
+            font-size: 0.8rem;
+            text-align: center; }
+    footer a {
+      text-decoration: none; }
+    footer a:hover, footer a:focus {
+      text-decoration: underline; } }
+@media screen and (max-width: 699px) and (min-width: 350px) {
+  /* ----- => FORM PAGES TOP-DOWN <= ----- */
+  /* ( Ex.: Login page, upload page, ... ) */
+  header {
+    background-color: #D0E7FF;
+    padding-top: 3vh; }
+    header h1 {
+      display: block;
+      font-size: 2rem;
+      text-align: center; }
+      header h1 span {
+        display: block;
+        color: #0000CC;
+        text-align: center; }
+    header #homeButton {
+      display: inline-block;
+      width: 100px;
+      margin-left: calc(50vw - 57px);
+      margin-top: 0.5rem;
+      font-size: 2rem;
+      text-decoration: none; }
+      header #homeButton i {
+        display: block;
+        text-align: center; }
+    header #homeButton:hover, header #homeButton:focus {
+      color: #50859c; }
 
-header > h1, header > a {
-	display: inline-block;
-}
+  nav {
+    font-size: 1.5rem;
+    display: block;
+    padding: 1 1rem 0; }
+    nav a {
+      text-decoration: none; }
+    nav #menuDropper {
+      display: inline-block;
+      width: calc(20% - 1rem);
+      padding: 0.5rem;
+      float: right; }
+      nav #menuDropper i {
+        display: block;
+        text-align: center; }
+      nav #menuDropper i:hover, nav #menuDropper i:focus {
+        color: #50859c; }
+    nav ul {
+      display: inline-block;
+      width: 80%; }
+      nav ul li {
+        display: inline-block;
+        width: 70%;
+        margin: 2vh 15%; }
+        nav ul li a {
+          display: block;
+          padding: 0.5rem;
+          border-radius: 1rem;
+          border: 1px solid black;
+          background-color: #D0E7FF;
+          text-align: center;
+          line-height: 200%; }
+        nav ul li a:hover, nav ul li a:focus {
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
 
-header > h1 {
-	font-size: 2rem;
-	line-height: 3rem;
-}
+  div {
+    width: 100vw;
+    margin-bottom: 10vh; }
+    div form {
+      margin: 3vh 5%;
+      padding: 1rem;
+      background-color: #D0E7FF;
+      border-radius: 1rem; }
+      div form fieldset {
+        display: block; }
+        div form fieldset label {
+          display: block;
+          text-align: center;
+          font-size: 1.5rem;
+          margin-bottom: 1vh; }
+        div form fieldset label[for=file] {
+          display: block;
+          width: 80%;
+          margin: 0 auto; }
+          div form fieldset label[for=file] img {
+            display: block;
+            width: 200px;
+            margin: 0 auto; }
+          div form fieldset label[for=file] span {
+            display: block;
+            width: 100%;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem; }
+        div form fieldset input[type=text], div form fieldset input[type=password], div form fieldset input[type=email] {
+          display: block;
+          width: calc(80% - 2px);
+          max-width: 350px;
+          margin: 0 auto 1vh auto;
+          font-size: 1.5rem;
+          padding: 4px; }
+        div form fieldset input[type=file] {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -99; }
+        div form fieldset button {
+          display: block;
+          width: 160px;
+          font-size: 1.5rem;
+          line-height: 200%;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          background-color: #D0E7FF;
+          border: 1px solid black;
+          margin: auto; }
+        div form fieldset button:hover, div form fieldset button:focus {
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
+        div form fieldset a {
+          display: block;
+          font-size: 1rem;
+          width: 80%;
+          margin: -1rem auto 1.5rem;
+          padding: 0.5rem; }
+      div form aside {
+        display: block;
+        text-align: center;
+        margin-top: 1.5rem; }
+      div form ul li {
+        position: relative;
+        display: block; }
+        div form ul li label {
+          display: inline-block;
+          font-size: 1rem;
+          width: calc(100% - 50px - 0.5rem);
+          position: absolute; }
+        div form ul li input {
+          all: initial;
+          margin: 0 0 0 0.5rem;
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          float: right;
+          background-image: url("../media/custom_elements/checkbox_unchecked.png");
+          background-repeat: no-repeat;
+          background-size: 50px; }
+        div form ul li input:checked {
+          background-image: url("../media/custom_elements/checkbox_checked.png"); }
+    div a {
+      display: block;
+      font-size: 1.5rem;
+      width: 80vw;
+      max-width: 250px;
+      margin: auto;
+      padding: 0.5rem;
+      border: 1px solid black;
+      border-radius: 0.5rem;
+      background-color: #D0E7FF;
+      text-decoration: none;
+      text-align: center; }
+    div a:hover, div a:focus {
+      background-color: #90A7A7;
+      box-shadow: 0 0 12px 1px #878787; }
 
-header >h1 > span {
-	text-transform: capitalize;
-	color: #000077;
+  #fileList {
+    min-height: 500px; }
+    #fileList form ul li {
+      border: 3px solid black;
+      margin: 10vh 0;
+      padding: 1rem;
+      border-radius: 1rem; }
+      #fileList form ul li input {
+        all: initial;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-image: url("../media/custom_elements/checkbox_unchecked.png");
+        background-size: 100px;
+        background-repeat: no-repeat; }
+      #fileList form ul li input:checked {
+        background-image: url("../media/custom_elements/checkbox_checked.png"); }
+      #fileList form ul li a {
+        all: initial;
+        display: inline-block;
+        width: calc(100% - 100px);
+        line-height: 100px;
+        text-align: center;
+        float: right;
+        font-size: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: "sans-serif"; }
+        #fileList form ul li a i {
+          display: none; }
+      #fileList form ul li a:hover, #fileList form ul li a:focus {
+        background-color: #90A7A7; }
+      #fileList form ul li ul {
+        display: block;
+        width: 100%;
+        height: 99px;
+        border-top: 1px solid black; }
+        #fileList form ul li ul li {
+          all: initial;
+          display: inline-block;
+          width: calc(50% - 1px);
+          border-right: 1px solid black; }
+          #fileList form ul li ul li a {
+            display: inline-block;
+            width: 100%;
+            line-height: 100px;
+            text-align: center;
+            font-size: 1.5rem;
+            overflow: hidden;
+            white-space: nowrap; }
+            #fileList form ul li ul li a i {
+              display: inline-block; }
+        #fileList form ul li ul li:last-of-type {
+          border-right: none;
+          width: 50%; } }
+@media screen and (max-width: 349px) {
+  /* ----- => FORM PAGES TOP-DOWN <= ----- */
+  /* ( Ex.: Login page, upload page, ... ) */
+  header {
+    background-color: #D0E7FF;
+    padding-top: 3vh; }
+    header h1 {
+      display: block;
+      font-size: 2rem;
+      text-align: center; }
+      header h1 span {
+        display: block;
+        color: #0000CC;
+        text-align: center; }
+    header #homeButton {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 2rem;
+      text-decoration: none; }
+      header #homeButton i {
+        display: block;
+        text-align: center; }
+    header #homeButton:hover, header #homeButton:focus {
+      color: #50859c; }
 
-}
+  nav {
+    font-size: 1.5rem;
+    display: block;
+    padding: 1 1rem 0; }
+    nav a {
+      text-decoration: none; }
+    nav #menuDropper {
+      display: block; }
+      nav #menuDropper i {
+        display: block;
+        text-align: center; }
+      nav #menuDropper i:hover, nav #menuDropper i:focus {
+        color: #50859c; }
+    nav ul {
+      display: inline-block;
+      width: 80%;
+      margin: 0 10%; }
+      nav ul li {
+        display: inline-block;
+        width: 70%;
+        margin: 2vh 15%; }
+        nav ul li a {
+          display: block;
+          padding: 0.5rem;
+          border-radius: 1rem;
+          border: 1px solid black;
+          background-color: #D0E7FF;
+          text-align: center;
+          line-height: 200%; }
+        nav ul li a:hover, nav ul li a:focus {
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
 
-header > a {
-	display: inline-block;
-	float: right;
-	margin-top: 0.25rem;
-}
+  div {
+    width: 100vw;
+    margin-bottom: 10vh; }
+    div form {
+      margin: 3vh 5%;
+      padding: 1rem;
+      background-color: #D0E7FF;
+      border-radius: 1rem; }
+      div form fieldset {
+        display: block; }
+        div form fieldset label {
+          display: block;
+          text-align: center;
+          font-size: 1.5rem; }
+        div form fieldset label[for=file] {
+          display: block;
+          width: 80%;
+          margin: 0 auto; }
+          div form fieldset label[for=file] img {
+            width: 150px;
+            margin: 0 auto; }
+          div form fieldset label[for=file] span {
+            width: 100%;
+            font-size: 1.25rem; }
+        div form fieldset input[type=text], div form fieldset input[type=password], div form fieldset input[type=email] {
+          display: block;
+          width: calc(80% - 2px);
+          max-width: 350px;
+          margin: 0 auto;
+          font-size: 1.5rem;
+          padding: 4px; }
+        div form fieldset input[type=file] {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -99; }
+        div form fieldset button {
+          display: block;
+          width: 160px;
+          font-size: 1.5rem;
+          line-height: 200%;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          background-color: #D0E7FF;
+          border: 1px solid black;
+          margin: auto; }
+        div form fieldset button:hover, div form fieldset button:focus {
+          background-color: #90A7A7;
+          box-shadow: 0 0 12px 1px #878787; }
+        div form fieldset a {
+          display: block;
+          font-size: 1rem;
+          width: 80%;
+          margin: 1rem auto; }
+      div form aside {
+        display: block;
+        text-align: center;
+        margin-top: 1rem; }
+    div a {
+      display: block;
+      font-size: 1.5rem;
+      width: 80vw;
+      max-width: 250px;
+      margin: auto;
+      padding: 0.5rem;
+      border: 1px solid black;
+      border-radius: 0.5rem;
+      background-color: #D0E7FF;
+      text-decoration: none;
+      text-align: center; }
+    div a:hover, div a:focus {
+      background-color: #90A7A7;
+      box-shadow: 0 0 12px 1px #878787; }
 
-header > a:hover {
-	color: #4488DD;
-}
+  #fileList {
+    min-height: 500px; }
+    #fileList form ul li {
+      border: 3px solid black;
+      margin: 10vh 0;
+      padding: 1rem;
+      border-radius: 1rem; }
+      #fileList form ul li input {
+        all: initial;
+        display: block;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        background-image: url("../media/custom_elements/checkbox_unchecked.png");
+        background-size: 60px;
+        background-repeat: no-repeat; }
+      #fileList form ul li input:checked {
+        background-image: url("../media/custom_elements/checkbox_checked.png"); }
+      #fileList form ul li a {
+        all: initial;
+        display: inline-block;
+        width: 100%;
+        line-height: 60px;
+        text-align: center;
+        font-size: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: "sans-serif"; }
+        #fileList form ul li a i {
+          display: none; }
+      #fileList form ul li a:hover, #fileList form ul li a:focus {
+        background-color: #90A7A7; }
+      #fileList form ul li ul {
+        display: block;
+        width: 100%;
+        height: 59px;
+        border-top: 1px solid black; }
+        #fileList form ul li ul li {
+          all: initial;
+          display: inline-block;
+          width: calc(50% - 1px);
+          border-right: 1px solid black; }
+          #fileList form ul li ul li a {
+            display: inline-block;
+            width: 100%;
+            line-height: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 0; }
+            #fileList form ul li ul li a i {
+              display: inline-block;
+              font-size: 3rem;
+              margin-top: calc((60px - 3rem) / 3); }
+        #fileList form ul li ul li:last-of-type {
+          border-right: none;
+          width: 50%; } }
 
-nav {
-	border-bottom: 1px solid black;
-}
-
-nav > ul {
-	display: block;
-	text-align: center;
-	margin: 1rem 0;
-}
-
-nav > ul > li {
-	display: inline-block;
-	margin: 0 2rem;
-}
-
-nav > ul > li > a {
-	border: 1px solid black;
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.5rem;
-}
-
-nav > ul > li > a:hover {
-	background-color: #E7E7E7;
-	text-decoration: none;
-}
-
-#fileList {
-	margin-top: 4vh;
-}
-
-#fileList > ul > li {
-	margin: 2vh 0;
-	box-shadow: 0 0 8px 0 #000000;
-}
-
-#fileList > ul > li:hover {
-	box-shadow: 0 0 16px 3px #303030;
-}
-
-#fileList > ul > li:nth-of-type(2n+1) {
-	background-color: #E7E7E7;
-}
-
-#fileList > ul > li > a {
-	display: inline-block;
-	line-height: 250%;
-	vertical-align: text-bottom;
-}
-
-#fileList > ul > li > a:first-of-type {
-	padding-left: 3vw;
-	width: 77vw;
-	border-right: 1px solid black;
-}
-
-#fileList > ul > li > a > h1 {
-	font-size: 1.5rem;
-	font-weight: 600;
-}
-
-#fileList > ul > li > a + a {
-	text-align: right;
-	width: 10vw;
-	padding-right: calc(10vw - 1px);
-}
-
-
-/*
-#fileList {
-	margin-top: 1rem;
-}
-
-#fileList > ul > li {
-	box-shadow: 0 0 6px 0 #000000;
-	padding: 0.25rem 8vw 0.25rem 3vw;
-	margin: 1rem 0;
-}
-
-#fileList > ul > li:hover {
-	box-shadow: 0 0 12px 3px #3F3F3F;
-}
-
-#fileList > ul > li:nth-child(2n+1) {
-	background-color: #E7E7E7;
-}
-
-#fileList > ul > li > h1 {
-	display: inline-block;
-	font-size: 1.25rem;
-	font-weight: 500;
-	margin: 0.5rem 0;
-}
-
-#fileList > ul > li > ul {
-	display: inline-block;
-	text-align: center;
-	float: right;
-	margin-top: 0.6rem;
-}
-
-#fileList > ul > li > ul >li {
-	display: inline-block;
-	margin-right: 2rem;
-}
-/**/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*# sourceMappingURL=screen.css.map */

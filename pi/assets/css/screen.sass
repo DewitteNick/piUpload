@@ -1,0 +1,885 @@
+/* ----- => VARIABLE DECLARATION<= ----- */
+
+$textColor: #000000
+$backgroundColor: #FFFFFF
+$backgroundAccentL: #D0E7FF
+$backgroundAccentD: #90A7A7
+$backgroundHighlight: #0000CC
+$shadowColorL: #878787
+$buttonBlue: #50859c
+
+$mainTitleSize: 3rem
+$sideTitleSize: 2rem
+$accentTextSize: 1.5rem
+$defaultTextSize: 1rem
+$smallTextSize: 0.8rem
+$tinyTextSize: 0.5rem
+$fontStack: 'sans-serif'
+
+/* ----- => GENERAL PAGE RULES <= ----- */
+
+/*Nr. 404*/
+.\34 \30 \34
+	display: block
+	margin: 10vh auto
+	border: 8px solid black
+
+.cf:after
+	content: ""
+	display: table
+	clear: both
+
+body
+	position: relative
+	color: $textColor
+	background-color: $backgroundColor
+	font-family: $fontStack
+	font-size: $defaultTextSize
+
+	a
+		color: inherit
+
+	a:hover, a:focus
+		text-decoration: none
+
+
+@media screen and (min-width: 700px)
+
+
+	/* ----- => FORM PAGES TOP-DOWN <= ----- */
+	/* ( Ex.: Login page, upload page, ... ) */
+
+	header
+		background-color: $backgroundAccentL
+		padding: $defaultTextSize 4vw
+
+		h1
+			display: inline-block
+			float: left
+			font-size: $mainTitleSize
+
+			span
+				color: $backgroundHighlight
+
+		#homeButton
+			display: inline-block
+			float: right
+			font-size: $accentTextSize
+
+		#homeButton
+			content: "Home"
+
+		#homeButton:hover, #homeButton:focus
+			color: $buttonBlue
+
+	nav
+
+		ul
+			display: block !important
+			text-align: center
+			border-bottom: 1px solid black
+			border-top: 1px solid black
+
+			li
+				display: inline-block
+
+				a
+					display: inline-block
+					padding: $defaultTextSize
+					border: 1px solid black
+					background-color: $backgroundAccentL
+					text-decoration: none
+					border-radius: $accentTextSize
+					margin: $accentTextSize 3vw
+					width: 100px
+					overflow: hidden
+
+				a:hover, a:focus
+					background-color: $backgroundAccentD
+					box-shadow: 0 0 6px 1px $shadowColorL
+					text-decoration: underline
+
+		#menuDropper
+			display: none
+
+	div
+
+		form
+			width: 600px
+			margin: $sideTitleSize auto
+			padding: 2vh 2vw
+			border-radius: calc(2vw + 2vh)
+			background-color: $backgroundAccentL
+
+			fieldset
+				width: 480px
+				margin: 0 auto
+				padding: 24px 0
+
+				label
+					display: inline-block
+					width: 120px
+					height: 24px
+					text-align: center
+
+				label[for=file]
+					all: initial
+					display: block
+					position: relative
+					line-height: 36px
+					height: 36px
+					border: 1px solid black
+
+					img
+						height: 30px
+						margin: 3px $defaultTextSize
+
+					span
+						all: initial
+						display: inline-block
+						line-height: 36px
+						font-size: $defaultTextSize * 1.25
+						float: right
+						padding-right: $accentTextSize
+						max-width: calc(100% - 32px - 0.5rem)
+						//NOTE fix this
+						white-space: nowrap
+						overflow: hidden
+
+				label[for=file]:hover
+					box-shadow: 0 0 8px 2px $shadowColorL
+					border: 1px solid $backgroundAccentD
+
+				ul
+
+					li
+						height: 36px
+						position: relative
+
+						label
+							display: inline-block
+							position: absolute
+							//top: 0
+							width: calc(100% - 36px)
+							line-height: 36px
+							height: 36px
+
+						input
+							all: initial
+							//outline: none
+							display: inline-block
+							width: 36px
+							height: 36px
+							margin: 0
+							float: right
+							background-image: url('../media/custom_elements/checkbox_unchecked.png')
+							background-repeat: no-repeat
+							background-size: 36px
+
+
+						input:checked
+							background-image: url('../media/custom_elements/checkbox_checked.png')
+
+
+
+				input
+					display: inline-block
+					width: 340px
+					height: 24px
+					margin-bottom: $sideTitleSize
+					font-size: $accentTextSize
+
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -99
+
+				input:focus
+					box-shadow: 0 0 3px 0 $shadowColorL
+					border-color: transparent
+
+				button
+					display: inline-block
+					background-color: $backgroundAccentL
+					border-radius: $accentTextSize
+					width: 128px
+					margin: 0 calc((480px - 100px) / 2)
+					height: 48px
+					border: 1px solid black
+
+				button:hover, button:focus
+					background-color: $backgroundAccentD
+					box-shadow: 0 0 8px 2px $shadowColorL
+					text-decoration: underline
+
+				a
+					display: block
+					text-decoration: none
+					line-height: 100%
+					padding: $tinyTextSize
+					margin: $sideTitleSize auto
+					width: 80%
+
+			aside
+				display: block
+				text-align: center
+
+		a
+			display: inline-block
+			width: 160px
+			line-height: 48px
+			text-align: center
+			margin-left: calc(50vw - 80px)
+			border: 1px solid black
+			border-radius: $accentTextSize
+
+		a:hover, a:focus
+			background-color: $backgroundAccentD
+			box-shadow: 0 0 8px 2px $shadowColorL
+			text-decoration: underline
+
+	#fileList
+
+		form
+			margin-top: 5vh
+			width: 80vw										//NOTE Forms is 80% of the window
+
+			ul
+
+				li
+					display: inline-block
+					margin: $tinyTextSize 0
+					background-color: $backgroundColor
+					border-radius: $tinyTextSize
+					overflow: hidden
+					height: $mainTitleSize
+
+					input
+						all: initial
+						position: relative
+						display: inline-block
+						width: 40px						//NOTE Checkbox is 40 px wide, goes from form
+						height: 40px
+						margin-left: 10px				//NOTE additional 10 px
+						background-repeat: no-repeat
+						background-size: 40px
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
+
+					input:checked
+						background-image: url('../media/custom_elements/checkbox_checked.png')
+
+
+					a
+						display: inline-block
+						margin: 0 0 0 -1px
+						border: none
+						border-radius: 0
+						text-decoration: none
+						width: calc(55vw - 50px - 1px)			//NOTE First link takes up 55/80 of the form, minus the 50px of the checkbox and minus the border of 1px
+						white-space: nowrap
+						vertical-align: bottom
+
+
+					a:hover
+						background-color: $buttonBlue
+						//box-shadow: 0 0 16px -1px $backgroundHighlight
+						box-shadow: 0 0 16px 0 $buttonBlue
+
+					ul
+						display: inline-block
+						width: 25vw
+						background-color: $backgroundColor
+						z-index: 9999
+
+						li
+							all: initial
+
+						a
+							width: calc((25vw - 2px) / 2)		//NOTE The width of one link is the width of the list minus the borders, and divided by the amount of links
+							border-left: 1px solid $backgroundAccentD
+
+	footer
+		display: inline-block
+		width: 100vw
+		height: 3 * $defaultTextSize
+		position: fixed
+		bottom: 0
+		background-color: $backgroundAccentL
+		font-size: $smallTextSize
+
+		ul
+			text-align: center
+			height: 100%
+
+			li
+				display: inline-block
+				line-height: 3 * $defaultTextSize
+				height: 3 * $defaultTextSize
+				vertical-align: text-top
+				margin: 0 $accentTextSize
+
+				ol
+					margin-top: 0.5rem
+
+					li
+						all: initial
+						display: block
+						font-size: $smallTextSize
+						text-align: center
+
+		a
+			text-decoration: none
+
+		a:hover, a:focus
+			text-decoration: underline
+
+
+
+
+
+@media screen and (max-width: 699px) and (min-width: 350px)
+
+
+	/* ----- => FORM PAGES TOP-DOWN <= ----- */
+	/* ( Ex.: Login page, upload page, ... ) */
+
+	header
+		background-color: $backgroundAccentL
+		padding-top: 3vh
+
+		h1
+			display: block
+			font-size: $sideTitleSize
+			text-align: center
+
+			span
+				display: block
+				color: $backgroundHighlight
+				text-align: center
+
+		#homeButton
+			display: inline-block
+			width: 100px
+			margin-left: calc(50vw - 57px)
+			margin-top: $tinyTextSize
+			font-size: $sideTitleSize
+			text-decoration: none
+
+			i
+				display: block
+				text-align: center
+
+		#homeButton:hover, #homeButton:focus
+			color: $buttonBlue
+
+	nav
+		font-size: $accentTextSize
+		display: block
+		padding: 1$defaultTextSize 0
+
+		a
+			text-decoration: none
+
+		#menuDropper
+			display: inline-block
+			width: calc(20% - 1rem)
+			padding: $tinyTextSize
+			float: right
+
+			i
+				display: block
+				text-align: center
+
+			i:hover, i:focus
+				color: $buttonBlue
+
+		ul
+			display: inline-block
+			width: 80%
+
+			li
+				display: inline-block
+				width: 70%
+				margin: 2vh 15%
+
+				a
+					display: block
+					padding: $tinyTextSize
+					border-radius: $defaultTextSize
+					border: 1px solid black
+					background-color: $backgroundAccentL
+					text-align: center
+					line-height: 200%
+
+				a:hover, a:focus
+					background-color: $backgroundAccentD
+					box-shadow: 0 0 12px 1px $shadowColorL
+
+	div
+		width: 100vw
+		margin-bottom: 10vh
+
+		form
+			margin: 3vh 5%
+			padding: $defaultTextSize
+			background-color: $backgroundAccentL
+			border-radius: $defaultTextSize
+
+			fieldset
+				display: block
+
+				label
+					display: block
+					text-align: center
+					font-size: $accentTextSize
+					margin-bottom: 1vh
+
+				label[for=file]
+					display: block
+					width: 80%
+					margin: 0 auto
+
+					img
+						display: block
+						width: 200px
+						margin: 0 auto
+
+					span
+						display: block
+						width: 100%
+						font-size: $accentTextSize
+						margin: $accentTextSize 0 $defaultTextSize
+
+				input[type=text], input[type=password], input[type=email]
+					display: block
+					width: calc(80% - 2px)
+					max-width: 350px
+					margin: 0 auto 1vh auto
+					font-size: $accentTextSize
+					padding: 4px
+
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -99
+
+
+				button
+					display: block
+					width: 160px
+					font-size: $accentTextSize
+					line-height: 200%
+					padding: $tinyTextSize
+					border-radius: $tinyTextSize
+					background-color: $backgroundAccentL
+					border: 1px solid black
+					margin: auto
+
+				button:hover, button:focus
+					background-color: $backgroundAccentD
+					box-shadow: 0 0 12px 1px $shadowColorL
+
+				a
+					display: block
+					font-size: $defaultTextSize
+					width: 80%
+					margin: -$defaultTextSize auto $accentTextSize
+					padding: $tinyTextSize
+
+			aside
+				display: block
+				text-align: center
+				margin-top: $accentTextSize
+
+			ul
+
+				li
+					position: relative
+					display: block
+
+					label
+						display: inline-block
+						font-size: $defaultTextSize
+						width: calc(100% - 50px - 0.5rem)
+						position: absolute
+
+					input
+						all: initial
+						margin:  0 0 0 $tinyTextSize
+						display: inline-block
+						width: 50px
+						height: 50px
+						float: right
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
+						background-repeat: no-repeat
+						background-size: 50px
+
+					input:checked
+						background-image: url('../media/custom_elements/checkbox_checked.png')
+
+
+
+		a
+			display: block
+			font-size: $accentTextSize
+			width: 80vw
+			max-width: 250px
+			margin: auto
+			padding: $tinyTextSize
+			border: 1px solid black
+			border-radius: $tinyTextSize
+			background-color: $backgroundAccentL
+			text-decoration: none
+			text-align: center
+
+		a:hover, a:focus
+			background-color: $backgroundAccentD
+			box-shadow: 0 0 12px 1px $shadowColorL
+
+
+
+	#fileList
+		min-height: 500px
+
+		form
+
+			input
+				//TODO remove default styles
+
+			ul
+				//background-color: purple
+
+				li
+					//all: initial
+					border: 3px solid black
+					//TODO remove 2 rules above
+					margin: 10vh 0
+					padding: $defaultTextSize
+					border-radius: $defaultTextSize
+
+					input
+						all: initial
+						display: inline-block
+						width: 100px
+						height: 100px
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
+						background-size: 100px
+						background-repeat: no-repeat
+
+					input:checked
+						background-image: url('../media/custom_elements/checkbox_checked.png')
+
+					a
+						all: initial
+						display: inline-block
+						width: calc(100% - 100px)
+						line-height: 100px
+						text-align: center
+						float: right
+						font-size: $defaultTextSize
+						overflow: hidden
+						white-space: nowrap
+						font-family: $fontStack
+
+						i
+							display: none
+
+					a:hover, a:focus
+						background-color: $backgroundAccentD
+
+					ul
+						display: block
+						width: 100%
+						height: 99px
+						border-top: 1px solid black
+
+						li
+							all: initial
+							display: inline-block
+							width: calc(50% - 1px)
+							border-right: 1px solid black
+
+							a
+								display: inline-block
+								width: 100%
+								line-height: 100px
+								text-align: center
+								font-size: $accentTextSize
+								overflow: hidden
+								white-space: nowrap
+
+								i
+									display: inline-block
+
+						li:last-of-type
+							border-right: none
+							width: 50%
+
+
+
+
+@media screen and (max-width: 349px)
+
+
+	/* ----- => FORM PAGES TOP-DOWN <= ----- */
+	/* ( Ex.: Login page, upload page, ... ) */
+
+	header
+		background-color: $backgroundAccentL
+		padding-top: 3vh
+
+		h1
+			display: block
+			font-size: $sideTitleSize
+			text-align: center
+
+			span
+				display: block
+				color: $backgroundHighlight
+				text-align: center
+
+		#homeButton
+			display: block
+			margin-top: $tinyTextSize
+			font-size: $sideTitleSize
+			text-decoration: none
+
+			i
+				display: block
+				text-align: center
+
+		#homeButton:hover, #homeButton:focus
+			color: $buttonBlue
+
+	nav
+		font-size: $accentTextSize
+		display: block
+		padding: 1$defaultTextSize 0
+
+		a
+			text-decoration: none
+
+		#menuDropper
+			display: block
+
+			i
+				display: block
+				text-align: center
+
+			i:hover, i:focus
+				color: $buttonBlue
+
+		ul
+			display: inline-block
+			width: 80%
+			margin: 0 10%
+
+			li
+				display: inline-block
+				width: 70%
+				margin: 2vh 15%
+
+				a
+					display: block
+					padding: $tinyTextSize
+					border-radius: $defaultTextSize
+					border: 1px solid black
+					background-color: $backgroundAccentL
+					text-align: center
+					line-height: 200%
+
+				a:hover, a:focus
+					background-color: $backgroundAccentD
+					box-shadow: 0 0 12px 1px $shadowColorL
+
+	div
+		width: 100vw
+		margin-bottom: 10vh
+
+		form
+			margin: 3vh 5%
+			padding: $defaultTextSize
+			background-color: $backgroundAccentL
+			border-radius: $defaultTextSize
+
+			fieldset
+				display: block
+
+				label
+					display: block
+					text-align: center
+					font-size: $accentTextSize
+
+				label[for=file]
+					display: block
+					width: 80%
+					margin: 0 auto
+
+					img
+						width: 150px
+						margin: 0 auto
+
+					span
+						width: 100%
+						font-size: $defaultTextSize * 1.25
+
+				input[type=text], input[type=password], input[type=email]
+					display: block
+					width: calc(80% - 2px)
+					max-width: 350px
+					margin: 0 auto
+					font-size: $accentTextSize
+					padding: 4px
+
+				input[type=file]
+					width: 0.1px
+					height: 0.1px
+					opacity: 0
+					overflow: hidden
+					position: absolute
+					z-index: -99
+
+				button
+					display: block
+					width: 160px
+					font-size: $accentTextSize
+					line-height: 200%
+					padding: $tinyTextSize
+					border-radius: $tinyTextSize
+					background-color: $backgroundAccentL
+					border: 1px solid black
+					margin: auto
+
+				button:hover, button:focus
+					background-color: $backgroundAccentD
+					box-shadow: 0 0 12px 1px $shadowColorL
+
+				a
+					display: block
+					font-size: $defaultTextSize
+					width: 80%
+					margin: $defaultTextSize auto
+
+			aside
+				display: block
+				text-align: center
+				margin-top: $defaultTextSize
+
+		a
+			display: block
+			font-size: $accentTextSize
+			width: 80vw
+			max-width: 250px
+			margin: auto
+			padding: $tinyTextSize
+			border: 1px solid black
+			border-radius: $tinyTextSize
+			background-color: $backgroundAccentL
+			text-decoration: none
+			text-align: center
+
+		a:hover, a:focus
+			background-color: $backgroundAccentD
+			box-shadow: 0 0 12px 1px $shadowColorL
+
+
+
+	#fileList
+		min-height: 500px
+
+		form
+
+			input
+			//TODO remove default styles
+
+			ul
+
+				li
+					//all: initial
+					border: 3px solid black
+					//TODO remove 2 rules above
+					margin: 10vh 0
+					padding: $defaultTextSize
+					border-radius: $defaultTextSize
+
+					input
+						all: initial
+						display: block
+						width: 60px
+						height: 60px
+						margin: 0 auto
+						background-image: url('../media/custom_elements/checkbox_unchecked.png')
+						background-size: 60px
+						background-repeat: no-repeat
+
+					input:checked
+						background-image: url('../media/custom_elements/checkbox_checked.png')
+
+					a
+						all: initial
+						display: inline-block
+						width: 100% //calc(100% - 60px)
+						line-height: 60px
+						text-align: center
+						font-size: $defaultTextSize
+						overflow: hidden
+						white-space: nowrap
+						font-family: $fontStack
+
+						i
+							display: none
+
+					a:hover, a:focus
+						background-color: $backgroundAccentD
+
+					ul
+						display: block
+						width: 100%
+						height: 59px
+						border-top: 1px solid black
+
+						li
+							all: initial
+							display: inline-block
+							width: calc(50% - 1px)
+							border-right: 1px solid black
+
+							a
+								display: inline-block
+								width: 100%
+								line-height: 60px
+								height: 60px
+								text-align: center
+								font-size: 0
+
+								i
+									display: inline-block
+									font-size: $mainTitleSize
+									margin-top: calc((60px - 3rem) / 3)
+
+						li:last-of-type
+							border-right: none
+							width: 50%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

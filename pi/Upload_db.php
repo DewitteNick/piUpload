@@ -42,24 +42,25 @@ class Upload_db
 
     //TODO sql functions here
 
-    public function checkLogin($username, $password) {
-        $valid = false;
+    public function getPass($username) {
+        $passCrypt = "";
         try {
-            $sql = "select * from upload.users where username like :username";
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username", $username);
-            $stmt->execute();
-            $login = $stmt->fetchAll(PDO::FETCH_OBJ);
-            if(!empty($login)) {
-                $login = $login[0];
-                if ($login->password == $password) {
-                    $valid = true;
-                }
-            }
-        }catch(PDOException $e){
-            die($e->getMessage());
-        }
-        return $valid;
+			$sql = "select password from upload.users where username like :username";
+			$stmt = $this->dbh->prepare($sql);
+			$stmt->bindParam(":username", $username);
+			$stmt->execute();
+			$login = $stmt->fetchAll(PDO::FETCH_COLUMN);
+			if(!empty($login)) {
+				$login = $login[0];
+			} else {
+				echo "<div class='error'><p>Failed to fetch login</p></div>";
+				$login = "";
+			}
+			$passCrypt = $login;
+		}catch(PDOException $e) {
+        	die($e->getMessage());
+		}
+		return $passCrypt;
     }
 
     public function registerUser($username, $password) {
@@ -71,7 +72,7 @@ class Upload_db
             $stmt->execute();
             $resultset = $stmt->fetchAll(PDO::FETCH_OBJ);
             if(empty($resultset)) {
-                $sql = "insert into upload.users values (:username, :password);";
+                $sql = "insert into upload.users (username, password) values (:username, :password);";
                 $stmt = $this->dbh->prepare($sql);
                 $stmt->bindParam(":username", $username);
                 $stmt->bindParam(":password", $password);
@@ -82,36 +83,6 @@ class Upload_db
             die($e->getMessage());
         }
         return $success;
-    }
-
-    public function addFile($file) {
-        try{
-            $sql = " insert into upload.files(username, filecode, filename) values (:username,:filecode,:filename)";
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username",$_SESSION['name']);
-            $stmt->bindParam(":filecode",$file['name']);
-            $stmt->bindParam(":filename",$file['name']);
-            $stmt->execute();
-        }catch(PDOException $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function getAllFiles($name) {
-        $files = [];
-        try{
-            $sql = "select filename from upload.files where username like :username";
-            $stmt = $this->dbh->prepare($sql);
-            $stmt->bindParam(":username", $name);
-            $stmt->execute();
-            $resultSet = $stmt->fetchAll(PDO::FETCH_COLUMN);
-            foreach($resultSet as $file) {
-                array_push($files, $file);
-            }
-        }catch(PDOException $e) {
-            die($e->getMessage());
-        }
-        return $files;
     }
 
     public function checkValidity($file, $name) {
@@ -132,16 +103,8 @@ class Upload_db
         return $valid;
     }
 
-    public function removeFile($file, $username) {
-    	try {
-    		$sql = "delete from upload.files where filename like :filename and username like :username";
-    		$stmt = $this->dbh->prepare($sql);
-    		$stmt->bindParam(":filename", $file);
-    		$stmt->bindParam(":username", $username);
-    		$stmt->execute();
-		}catch(PDOException $e) {
-    		die($e->getMessage());
-		}
+	public function saveSetting($setting, $state, $username) {
+//    	"select * from upload.settings where username like :username ";
 	}
 
 }

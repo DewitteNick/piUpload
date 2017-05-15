@@ -2,6 +2,20 @@
 
 ##
 
+### 2017-05-09
+
+##### 2017-05-09.1
+
+ * UI updated. Started a CRUD implementation. Using Ajax atm, changing to fetch soon.
+ * CSS updated
+ * (sligtly?) Better page structure
+
+### 2017-04-04
+
+##### 2017-04-04.1
+
+* Security, yay! passwords are now hashed.
+
 ### 2017-03-31
 
 ##### 2017-03-31.1
