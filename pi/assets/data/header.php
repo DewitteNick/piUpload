@@ -32,10 +32,8 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="assets/media/icons/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/media/icons/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/media/icons/favicon-16x16.png">
-<!--	<link rel="manifest" href="/manifest.json">-->
 	<meta name="msapplication-TileColor" content="#50859C">
 	<meta name="msapplication-TileImage" content="assets/media/icons/ms-icon-144x144.png">
-<!--	<meta name="theme-color" content="#ffffff">-->
 </head>
 <body>
 <header class="cf">

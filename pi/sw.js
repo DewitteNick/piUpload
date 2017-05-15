@@ -43,8 +43,17 @@ self.addEventListener('fetch', function (event) {
 	 If all else fails, show an error page (dynamic pages while unable to connect to the server).
 	 */
 
+	console.log('Fetching...');
 	event.respondWith(fetch(event.request)
 		.catch(function (error) {
+			console.log('No server connection', error);
+			return caches.open(CACHE_NAME)
+				.then(function (cache) {
+					return cache.match(event.request);	//TODO catch undefined
+				})
+		})
+		.catch(function (error) {						//TODO why is this not responding to 'undefined'?
+			console.log('No cached version found', error);
 			return caches.open(CACHE_NAME)
 				.then(function (cache) {
 					return cache.match('index.html');
