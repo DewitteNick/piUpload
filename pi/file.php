@@ -19,40 +19,25 @@ if($guiNeeded) {
 switch($httpVerb) {
 	case "GET":
 		if(!is_null($file)) {
-			//NOTE download file(s)
-			if(is_array($file)) {
-				$zipfile = createZipFile($file);
-				echo $zipfile;
-			}else{
-				downloadFile($file);
-			}
+			downloadFiles($file);
 		}elseif(!is_null($dir)) {
 			//NOTE open directory -> howto? [later]
-
 		}else{
-			//NOTE show new file form
 			showUploadForm();
 		}
 		break;
 	case "UPDATE":
-			//NOTE Rename file
 		$newName = isset($_GET['name']) ? $_GET['name'] : null;
 		echo json_encode(array("success" => renameFile($file, $newName)));
 		break;
 	case "DELETE":
-			//NOTE Delete file
-		if(is_array($file)) {
-			echo json_encode(deleteMultipleFiles($file));
-		}else{
-				echo json_encode(array("success" => removeFile($file)));
-		}
+		deleteFiles($file);
 		break;
 	case "POST":
 			if(is_null($file)) {
-				//NOTE Create a new file
 				addNewFile();
 			}else{
-				//NOTE Create new directory
+				//NOTE Create new directory [later]
 			}
 		break;
 	default:
@@ -84,5 +69,25 @@ function addNewFile() {
 		redirect("home.php");
 	}else{
 		echo "<h1>File couldn't be uploaded.</h1>";
+		echo "<a href='index.php'>Home</a>";
+		echo "<br>";
+		echo "<a href='file.php'>Back</a>";
+	}
+}
+
+function downloadFiles($file) {
+	if(is_array($file)) {
+		$zipfile = createZipFile($file);
+		echo $zipfile;
+	}else{
+		downloadFile($file);
+	}
+}
+
+function deleteFiles($file) {
+	if(is_array($file)) {
+		echo json_encode(deleteMultipleFiles($file));
+	}else{
+		echo json_encode(array("success" => removeFile($file)));
 	}
 }

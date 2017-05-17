@@ -84,7 +84,7 @@ class Upload_db
         }
         return $success;
     }
-
+/*
     public function checkValidity($file, $name) {
         $valid = false;
         try{
@@ -102,7 +102,7 @@ class Upload_db
         }
         return $valid;
     }
-
+*/
 	public function saveSetting($setting, $state, $username) {
 //    	"select * from upload.settings where username like :username ";
 	}

@@ -16,8 +16,8 @@ switch($httpVerb) {
 		require_once "Upload_db.php";
 		$success = registerUser($_POST['name'],$_POST['pass'],$_POST['email']);
 		if($success) {
-			//TODO User registered
-			echo "succesfull registration";
+			$_SESSION['name'] = $_POST['name'];
+			redirect('home.php');
 		}else{
 			//TODO User not registered
 			echo "failed to register";

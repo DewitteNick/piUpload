@@ -33,39 +33,54 @@ function registerUser($username, $password, $email) {
     return $success;
 }
 
-function checkFile($file) {
+function checkIfWriteableFile($file) {
+	$username = $_SESSION['name'];	//TODO checks
+	$filename = $file['name'];	//NOTE This is checked later on
     //NOTE See if a file was supplied
     if($file['error'] !== 0) {
         return false;
     }
     $allowedFileTypes = Config::getConfigInstance()->getMimetypes();
-//    $allowedFileTypes = array('image/jpeg','image/png','image/gif','image/bmp','text/plain');
-
     $maxFileSize = 2000000000;  //NOTE php file size? (=> this is 2 GB)
-    $targetFile = "upload/".$_SESSION['name']."/".$file['name'];
+    $targetFile = "upload/".$username."/".$filename;
     $uploadOk = 0;
-    $amountOfChecks = 3;
+    $amountOfChecks = 4;
+    //NOTE Check if filename contains illegal chars
+	if(checkIllegalCharacters($filename)) {
+		$uploadOk++;
+	}else{
+		echo "Filename is illegal";
+	}
     //NOTE Check if file exists already.
     if(!file_exists($targetFile)) {
         $uploadOk++;
-    }
+    }else{
+		echo 'File is not unique in target location';
+	}
     //NOTE Check if filesize is OK.
     if($file['size'] <= $maxFileSize) {
         $uploadOk++;
-    }
+    }else{
+    	echo 'File was too large: ' . $file['size'] . ' out of ' . $maxFileSize . 'used.';
+	}
     //NOTE Check if the filetype is OK.
-    foreach($allowedFileTypes as $allowedType) {
-        if($file['type'] == $allowedType) {
-            $uploadOk++;
-            break;
-        }
-    }
+	if(in_array($file['type'], $allowedFileTypes)) {
+    	$uploadOk++;
+	}else{
+    	echo 'Filetype is not supported yet';
+		// THERE'S NO ZONE LIKE COMFORT ZONE
+		date_default_timezone_set('Europe/Brussels');
+
+		$data = $username . "\t\t" . date('Y/m/d - H:i') . "\t\t" . $file['type'] . "\n";
+    	file_put_contents('config/mimeTypes/unSupported.txt', $data,FILE_APPEND);
+	}
+	//TODO return JSON?
     return ($uploadOk == $amountOfChecks);
 }
 
 
 function saveFile($file) {
-	$success = checkFile($file);
+	$success = checkIfWriteableFile($file);
 	$targetDir = "upload/".$_SESSION['name']."/";
 
     if($success) {
@@ -90,7 +105,7 @@ function getFiles() {
 	return $files;
 }
 
-
+/*
 function checkAvailability($file) {
 	$valid = false;
 	if (!is_null($file)) {
@@ -109,7 +124,7 @@ function checkAvailability($file) {
 	}
     return $valid;
 }
-
+*/
 
 function downloadFile($file){
 	$fullPath = "upload/".$_SESSION['name']."/".$file;
@@ -193,8 +208,29 @@ function createZipFile($files) {
 }
 
 
+function sanitizeInput($input) {	//Sanitizing input: Altering how the data being saved!!
+	$input = trim($input);
+	return $input;
+}
 
 
+function sanitizeOutput($output) {	//Sanitizing output: Altering how the data is being displayed
+	$output = stripslashes($output);
+	$output = htmlentities($output, ENT_QUOTES | ENT_DISALLOWED | ENT_HTML5);
+	return $output;
+}
+
+
+function checkIllegalCharacters($string) {
+	$forbiddenCharacters = array('..','/','?');
+	$legalFileName = true;
+	foreach($forbiddenCharacters as $illegal) {
+		if(strpos($string, $illegal)) {
+			$legalFileName = false;
+		}
+	}
+	return $legalFileName;
+}
 
 
 

@@ -2,6 +2,13 @@
 
 ##
 
+###2017-05-15
+
+##### 2017-05-15.1
+
+* Limited offline response added
+* Finished prototype
+
 ### 2017-05-09
 
 ##### 2017-05-09.1

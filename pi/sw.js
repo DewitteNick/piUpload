@@ -43,44 +43,23 @@ self.addEventListener('fetch', function (event) {
 	 If that doesn't work, get the cached version (static pages while unable to connect to the server).
 	 If all else fails, show an error page (dynamic pages while unable to connect to the server).
 	 */
-
 	console.log('Fetching...');
-	event.respondWith(fetch(event.request)
-		.catch(function (error) {
-			return caches.open(CACHE_NAME)
-				.then(function (cache) {
-					return cache.match(event.request);	//TODO catch undefined
-				})
-		})
-		.then(function (data) {
-			if(data === undefined) {
-				data = caches.open(CACHE_NAME)
+	event.respondWith(
+		fetch(event.request)
+			.catch(function (error) {
+				return caches.open(CACHE_NAME)
 					.then(function (cache) {
-						return cache.match('index.html');
-					});
-			}
-			return data;
-		})
-
-		/*
-		.catch(function (error) {						//TODO why is this not responding to 'undefined'?
-			console.log('No cached version found', error);
-			return caches.open(CACHE_NAME)
-				.then(function (cache) {
-					return cache.match('index.html');
-				})
-		})
-		*/
-	)
-
-	/*
-	event.respondWith(fetch(event.request).catch(function (error) {
-		console.log('Getting offline replacement', error);
-		return caches.open(CACHE_NAME)
-			.then(function (cache) {
-				return cache.match('/index.html');
+						return cache.match(event.request);
+					})
 			})
-	}))
-	*/
-
+			.then(function (data) {
+				if (data === undefined) {
+					data = caches.open(CACHE_NAME)
+						.then(function (cache) {
+							return cache.match('index.html');
+						});
+				}
+				return data;
+			})
+	)
 });

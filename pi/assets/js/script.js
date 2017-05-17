@@ -83,8 +83,7 @@ function renameResource(resource, newName) {		//NOTE fix this
 		try {
 			data = JSON.parse(data);
 			if (data.success) {
-				$('#' + resource).attr('id', newName).find('h1').text(newName);	//TODO Works the first time, not afterwards. attribute not set?
-				// window.location.replace('home.php');	//TODO get rid of this
+				$('#' + resource).attr('id', newName).find('h1').text(newName);	//TODO fix
 			}
 		}catch(e) {
 		}

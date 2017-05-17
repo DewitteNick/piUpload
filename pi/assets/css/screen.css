@@ -15,7 +15,7 @@ body {
   position: relative;
   color: #000000;
   background-color: #FFFFFF;
-  font-family: "sans-serif";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem; }
   body a {
     color: inherit; }
@@ -440,7 +440,7 @@ body {
         font-size: 1rem;
         overflow: hidden;
         white-space: nowrap;
-        font-family: "sans-serif"; }
+        font-family: Arial, Helvetica, sans-serif; }
         #fileList form ul li a i {
           display: none; }
       #fileList form ul li a:hover, #fileList form ul li a:focus {
@@ -629,7 +629,7 @@ body {
         font-size: 1rem;
         overflow: hidden;
         white-space: nowrap;
-        font-family: "sans-serif"; }
+        font-family: Arial, Helvetica, sans-serif; }
         #fileList form ul li a i {
           display: none; }
       #fileList form ul li a:hover, #fileList form ul li a:focus {
