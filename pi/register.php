@@ -14,6 +14,16 @@ switch($httpVerb) {
 		session_start();
 		require_once "doFunctions.php";
 		require_once "Upload_db.php";
+
+		//TODO sanitize input
+
+		//TODO Check if input is valid
+		if(checkIllegalCharacters($_POST['name']) && checkIllegalCharacters($_POST['email'])) {
+			//input is safe
+		}else{
+			//attempted injection
+		}
+
 		$success = registerUser($_POST['name'],$_POST['pass'],$_POST['email']);
 		if($success) {
 			$_SESSION['name'] = $_POST['name'];

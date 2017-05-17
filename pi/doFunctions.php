@@ -28,7 +28,9 @@ function registerUser($username, $password, $email) {
     	echo "password is too short";
 	}
     if($success) {
-    	mkdir("upload/".$username);
+    	if(!mkdir("upload/".$username)) {
+    		logError("Failed to create root directory.", $username);
+		}
 	}
     return $success;
 }
@@ -41,7 +43,7 @@ function checkIfWriteableFile($file) {
         return false;
     }
     $allowedFileTypes = Config::getConfigInstance()->getMimetypes();
-    $maxFileSize = 2000000000;  //NOTE php file size? (=> this is 2 GB)
+    $maxFileSize = 1024 * 1024 * 50;  //NOTE currently 50MB
     $targetFile = "upload/".$username."/".$filename;
     $uploadOk = 0;
     $amountOfChecks = 4;
@@ -68,11 +70,15 @@ function checkIfWriteableFile($file) {
     	$uploadOk++;
 	}else{
     	echo 'Filetype is not supported yet';
+    	$unsupportedFileTypeError = "Failed to upload file of type: " . $file['type'];
+    	logError($unsupportedFileTypeError, $_SESSION['name']);
+    	/*
 		// THERE'S NO ZONE LIKE COMFORT ZONE
 		date_default_timezone_set('Europe/Brussels');
 
 		$data = $username . "\t\t" . date('Y/m/d - H:i') . "\t\t" . $file['type'] . "\n";
     	file_put_contents('config/mimeTypes/unSupported.txt', $data,FILE_APPEND);
+    	*/
 	}
 	//TODO return JSON?
     return ($uploadOk == $amountOfChecks);
@@ -155,8 +161,12 @@ function removeFile($file) {
 
 
 function renameFile($file, $newname) {
-	$path = "upload/".$_SESSION['name']."/".$file;
-	$success = rename($path, "upload/".$_SESSION['name']."/".$newname);
+	if(checkIllegalCharacters($newname)) {
+		$path = "upload/".$_SESSION['name']."/".$file;
+		$success = rename($path, "upload/".$_SESSION['name']."/".$newname);
+	}else{
+		$success = false;
+	}
 	return $success;
 }
 
@@ -233,7 +243,14 @@ function checkIllegalCharacters($string) {
 }
 
 
+function logError($errorMessage, $user = '[no user specified]') {
+	// THERE'S NO ZONE LIKE COMFORT ZONE
+	date_default_timezone_set('Europe/Brussels');
 
+	$data = $user . "\t\t" . date('Y/m/d - H:i') . "\t\t" . $errorMessage . "\n";
+	file_put_contents('config/mimeTypes/errorLog.txt', $data,FILE_APPEND);
+
+}
 
 
 
