@@ -83,7 +83,13 @@ function renameResource(resource, newName) {		//NOTE fix this
 		try {
 			data = JSON.parse(data);
 			if (data.success) {
-				$('#' + resource).attr('id', newName).find('h1').text(newName);	//TODO fix
+				console.log($("#"+resource).attr("id", newName).find("span").text(newName));
+			}else{		//NOTE rename failed. Show the user why.
+				$errorMessage = "Failed to rename the file.";
+				if(!data.legalName){
+					$errorMessage += '\n' + "Illegal character used."
+				}
+				alert($errorMessage);
 			}
 		}catch(e) {
 		}

@@ -72,13 +72,6 @@ function checkIfWriteableFile($file) {
     	echo 'Filetype is not supported yet';
     	$unsupportedFileTypeError = "Failed to upload file of type: " . $file['type'];
     	logError($unsupportedFileTypeError, $_SESSION['name']);
-    	/*
-		// THERE'S NO ZONE LIKE COMFORT ZONE
-		date_default_timezone_set('Europe/Brussels');
-
-		$data = $username . "\t\t" . date('Y/m/d - H:i') . "\t\t" . $file['type'] . "\n";
-    	file_put_contents('config/mimeTypes/unSupported.txt', $data,FILE_APPEND);
-    	*/
 	}
 	//TODO return JSON?
     return ($uploadOk == $amountOfChecks);
@@ -102,35 +95,10 @@ function getFiles() {
 	$scanned = scandir("upload/$username");
 	array_shift($scanned);
 	array_shift($scanned);
-	/*
-    $db = Upload_db::getUploadInstance();
-    $files = $db->getAllFiles($_SESSION['name']);
-	return $files;
-	*/
 	$files = $scanned;
 	return $files;
 }
 
-/*
-function checkAvailability($file) {
-	$valid = false;
-	if (!is_null($file)) {
-		if(!is_array($file)) {
-			$db = Upload_db::getUploadInstance();
-			$valid = $db->checkValidity($file, $_SESSION['name']);
-			return $valid;
-		}
-		foreach($file as $item) {
-			$db = Upload_db::getUploadInstance();
-			$valid = $db->checkValidity($item, $_SESSION['name']);
-			if($valid == false) {
-				return $valid;
-			}
-		}
-	}
-    return $valid;
-}
-*/
 
 function downloadFile($file){
 	$fullPath = "upload/".$_SESSION['name']."/".$file;
@@ -161,11 +129,12 @@ function removeFile($file) {
 
 
 function renameFile($file, $newname) {
+	$success = false;
 	if(checkIllegalCharacters($newname)) {
-		$path = "upload/".$_SESSION['name']."/".$file;
-		$success = rename($path, "upload/".$_SESSION['name']."/".$newname);
-	}else{
-		$success = false;
+		$path = "upload/" . $_SESSION['name'] . "/" . $file;
+		if (!file_exists($path)) {
+			$success = rename($path, "upload/" . $_SESSION['name'] . "/" . $newname);
+		}
 	}
 	return $success;
 }
@@ -225,21 +194,11 @@ function sanitizeInput($input) {	//Sanitizing input: Altering how the data being
 
 
 function sanitizeOutput($output) {	//Sanitizing output: Altering how the data is being displayed
+	$altCodes = chr(0xa2) . chr(0xc0);
+	$output = str_replace($altCodes, ' ', $output);
 	$output = stripslashes($output);
 	$output = htmlentities($output, ENT_QUOTES | ENT_DISALLOWED | ENT_HTML5);
 	return $output;
-}
-
-
-function checkIllegalCharacters($string) {
-	$forbiddenCharacters = array('..','/','?');
-	$legalFileName = true;
-	foreach($forbiddenCharacters as $illegal) {
-		if(strpos($string, $illegal)) {
-			$legalFileName = false;
-		}
-	}
-	return $legalFileName;
 }
 
 
@@ -250,6 +209,21 @@ function logError($errorMessage, $user = '[no user specified]') {
 	$data = $user . "\t\t" . date('Y/m/d - H:i') . "\t\t" . $errorMessage . "\n";
 	file_put_contents('config/mimeTypes/errorLog.txt', $data,FILE_APPEND);
 
+}
+
+/**
+ * @param string $string The string to be validated
+ * @return bool $legalFileName True if the string is legal
+ */
+function checkIllegalCharacters($string) {
+	$legalFileName = true;
+	$forbiddenCharacters = array('..','/','\\','?');
+	foreach($forbiddenCharacters as $illegal) {
+		if(is_numeric(strpos($string, $illegal))) {
+			$legalFileName = false;
+		}
+	}
+	return $legalFileName;
 }
 
 

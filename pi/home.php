@@ -45,7 +45,7 @@ $files = getFiles();
 						*/
 						$html .= "fa-file";
 
-						$html .= " fa-gl'></i> $file</h1>";
+						$html .= " fa-gl'></i> <span>$file</span></h1>";
 						$html .= "</a><ul>";
 						$html .= "<li><a href='#' class='renameButton'><i class='fa fa-pencil fa-gl'></i> Rename</a></li>";
 						$html .= "<li><a href='#' class='deleteButton'><i class='fa fa-trash fa-gl'></i> Delete </a></li>";

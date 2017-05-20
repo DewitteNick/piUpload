@@ -27,8 +27,17 @@ switch($httpVerb) {
 		}
 		break;
 	case "UPDATE":
-		$newName = isset($_GET['name']) ? $_GET['name'] : null;
-		echo json_encode(array("success" => renameFile($file, $newName)));
+		$result = array('legalName' => false, 'success' => false);
+
+		if(isset($_GET['name'])){
+			$result['legalName']  = checkIllegalCharacters($_GET['name']);
+			if($result['legalName']) {
+				$result['success'] = renameFile($file, $_GET['name']);
+			}else{
+				$result['success'] = false;
+			}
+		}
+		echo json_encode($result);
 		break;
 	case "DELETE":
 		deleteFiles($file);

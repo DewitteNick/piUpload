@@ -21,6 +21,19 @@ body {
     color: inherit; }
   body a:hover, body a:focus {
     text-decoration: none; }
+  body section article {
+    display: inline-block;
+    width: calc(40vw + 100px);
+    margin: 3vh calc(30vw - 50px); }
+
+.howest {
+  background-image: url("../media/icons/howest-500x500.jpg");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: right;
+  height: 100px;
+  padding-right: 100px;
+  width: 40vw; }
 
 @media screen and (min-width: 700px) {
   /* ----- => FORM PAGES TOP-DOWN <= ----- */

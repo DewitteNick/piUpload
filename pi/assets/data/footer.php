@@ -18,18 +18,12 @@
 	</ul>
 </footer>
 
-<script rel="script" type="text/javascript" src="assets/js/jQueryCDN3.1.1.js"></script>
-<script rel="script" type="text/javascript" src="assets/js/script.js"></script>
+<script rel="script" type="text/javascript" src="/assets/js/jQueryCDN3.1.1.js"></script>
+<script rel="script" type="text/javascript" src="/assets/js/script.js"></script>
 <script src="https://use.fontawesome.com/8d2c8f6d42.js"></script>
 <?php
 ?>
-<script>
-	if('serviceWorker' in navigator) {
-		navigator.serviceWorker
-			.register('/sw.js')
-			.then(function(registration) { console.log("Service Worker Registered. Scope: " + registration.scope); });
-	}
-</script>
+<script rel="script" type="text/javascript" src="/assets/js/swRegistration.js"></script>
 </body>
 </html>
 

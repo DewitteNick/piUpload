@@ -16,23 +16,25 @@ switch($httpVerb) {
 		require_once "Upload_db.php";
 
 		//TODO sanitize input
-
+		$username = sanitizeInput($_POST['name']);
+		$password = $_POST['pass'];		//TODO this doesn't need anything except prep statement, right?
+		$email = sanitizeInput($_POST['email']);
 		//TODO Check if input is valid
-		if(checkIllegalCharacters($_POST['name']) && checkIllegalCharacters($_POST['email'])) {
+		if(checkIllegalCharacters($username) && checkIllegalCharacters($email)) {
 			//input is safe
+			$success = registerUser($username, $password, $email);
+			if ($success) {
+				$_SESSION['name'] = $username;
+				redirect('home.php');
+			} else {
+				//TODO User not registered
+				echo "failed to register";
+			}
+			session_abort();
 		}else{
-			//attempted injection
+			//input was unsafe TODO
+			echo "illegal input";
 		}
-
-		$success = registerUser($_POST['name'],$_POST['pass'],$_POST['email']);
-		if($success) {
-			$_SESSION['name'] = $_POST['name'];
-			redirect('home.php');
-		}else{
-			//TODO User not registered
-			echo "failed to register";
-		}
-		session_abort();
 		break;
 	default:
 		echo "\"Mind your (HTTP) vocabulary!\" - Mom";
